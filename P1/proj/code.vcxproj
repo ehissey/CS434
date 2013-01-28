@@ -75,6 +75,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>$(SolutionDir)\include</AdditionalIncludeDirectories>
+      <AdditionalOptions>/showIncludes %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>cg.lib;cgGL.lib;tiff.lib;fltk.lib;fltkgl.lib;opengl32.lib;glu32.lib;wsock32.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -88,6 +89,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CGInterface.cpp" />
+    <ClCompile Include="EnvMap.cpp" />
     <ClCompile Include="framebuffer.cpp" />
     <ClCompile Include="gui.cxx" />
     <ClCompile Include="m33.cpp" />
@@ -99,6 +101,7 @@
   <ItemGroup>
     <ClInclude Include="CGInterface.h" />
     <ClInclude Include="CImg.h" />
+    <ClInclude Include="EnvMap.h" />
     <ClInclude Include="framebuffer.h" />
     <ClInclude Include="gui.h" />
     <ClInclude Include="m33.h" />

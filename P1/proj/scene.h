@@ -1,11 +1,16 @@
 #pragma once
 
+
 #include "gui.h"
 #include "framebuffer.h"
 #include "ppc.h"
 #include "tmesh.h"
 
+#include "EnvMap.h"
+
+
 #include "CGInterface.h"
+
 
 class Scene {
 public:
@@ -19,6 +24,9 @@ public:
     int tmsN; // number of triangle meshes
     GUI *gui; // user interface
     FrameBuffer *fb, *hwfb; // SW and HW framebuffers
+    EnvMap * eMap;
+
+    bool hasRenderedBG;
 
     Scene();
     void DBG();
@@ -37,7 +45,7 @@ public:
     void LoadView1();
     void GoToView1();
     void GoToView(PPC *nppc);
-    FrameBuffer * openImg(string filename);
+    static FrameBuffer * openImg(string filename);
 
 };
 

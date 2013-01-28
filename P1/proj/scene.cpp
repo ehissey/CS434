@@ -4,8 +4,6 @@
 #include <float.h>
 #include "CImg.h"
 #include "v3.h"
-
-
 #include <iostream>
 
 using namespace std;
@@ -70,10 +68,6 @@ Scene::Scene() {
 
     // render scene
     Render();
-
-    FrameBuffer * envBuf = openImg("uffizi_cross.bmp");
-
-    envBuf->show();
 
 }
 
@@ -235,9 +229,19 @@ void Scene::RenderGPU() {
     {
         cgi->PerSessionInit();
         soi->PerSessionInit(cgi);
+        
+        eMap = new EnvMap();
+
+        eMap->Load(7);
+        
     }
 
     FrameSetupHW();
+
+    if(eMap)
+    {
+        
+    }
 
     // per frame parameter setting and enabling shaders
     soi->PerFrameInit();

@@ -1,12 +1,1046 @@
-﻿Build started 1/27/2013 10:02:54 PM.
+﻿Build started 1/28/2013 12:27:11 AM.
      1>Project "C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\code.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Release\code.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\ehissey\Desktop\CS434\trunk\P1\proj\\include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt scene.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\ehissey\Desktop\CS434\trunk\P1\proj\\include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt CGInterface.cpp EnvMap.cpp framebuffer.cpp gui.cxx ppc.cpp scene.cpp /showIncludes 
+         CGInterface.cpp
+         Note: including file: c:\users\ehissey\desktop\cs434\trunk\p1\proj\CGInterface.h
+         Note: including file:  C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\Cg/cgGL.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\Cg/cg.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/gl.h
+         Note: including file:  C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\Cg/cg.h
+         Note: including file: c:\users\ehissey\desktop\cs434\trunk\p1\proj\v3.h
+         Note: including file:  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\iostream
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\istream
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ostream
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ios
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocnum
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\climits
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\yvals.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sal.h
+         Note: including file:           c:\program files (x86)\microsoft visual studio 10.0\vc\include\codeanalysis\sourceannotations.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\vadefs.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\use_ansi.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\limits.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cmath
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\math.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstdio
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\swprintf.inl
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstdlib
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdlib.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\streambuf
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xiosbase
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstring
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdexcept
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\exception
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xstddef
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstddef
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stddef.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\eh.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\malloc.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xstring
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xmemory
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\new
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xutility
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\utility
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\iosfwd
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cwchar
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wtime.inl
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdbg.h
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\type_traits
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\limits
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ymath.h
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cfloat
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\float.h
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtwrn.h
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xtr1common
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\typeinfo
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocinfo
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocinfo.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ctype.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\locale.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xdebug
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\system_error
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cerrno
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\errno.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\share.h
+         Note: including file: c:\users\ehissey\desktop\cs434\trunk\p1\proj\scene.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\gui.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_utf8.h
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Export.H
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_types.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/types.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/stat.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/stat.inl
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Enumerations.H
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Export.H
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_types.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl_Double_Window.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Window.H
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Group.H
+         Note: including file:      c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Widget.H
+         Note: including file:       c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Enumerations.H
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl_Button.H
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\framebuffer.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl.H
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl_Gl_Window.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Window.H
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\GL/glut.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/gl.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/glu.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/gl.h
+         Note: including file:   c:\users\ehissey\desktop\cs434\trunk\p1\proj\ppc.h
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\m33.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\tmesh.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\EnvMap.h
+         EnvMap.cpp
+         Note: including file: C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\GL\glew.h
+         Note: including file:  C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/glu.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/gl.h
+         Note: including file: c:\users\ehissey\desktop\cs434\trunk\p1\proj\scene.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\gui.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_utf8.h
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Export.H
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_types.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sal.h
+         Note: including file:        c:\program files (x86)\microsoft visual studio 10.0\vc\include\codeanalysis\sourceannotations.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\vadefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\swprintf.inl
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdlib.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\limits.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/types.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/stat.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/stat.inl
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\locale.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ctype.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Enumerations.H
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Export.H
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_types.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl_Double_Window.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Window.H
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Group.H
+         Note: including file:      c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Widget.H
+         Note: including file:       c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Enumerations.H
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl_Button.H
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\framebuffer.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl.H
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl_Gl_Window.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Window.H
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\GL/glut.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/gl.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/glu.h
+         Note: including file:   c:\users\ehissey\desktop\cs434\trunk\p1\proj\v3.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\iostream
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\istream
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ostream
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ios
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocnum
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\climits
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\yvals.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\use_ansi.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cmath
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\math.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstdio
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstdlib
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\streambuf
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xiosbase
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstring
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdexcept
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\exception
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xstddef
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstddef
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stddef.h
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\eh.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\malloc.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xstring
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xmemory
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\new
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xutility
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\utility
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\iosfwd
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cwchar
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wtime.inl
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdbg.h
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\type_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\limits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ymath.h
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cfloat
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\float.h
+         Note: including file:                     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtwrn.h
+         Note: including file:                      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xtr1common
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\typeinfo
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocinfo
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocinfo.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xdebug
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\system_error
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cerrno
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\errno.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\share.h
+         Note: including file:   c:\users\ehissey\desktop\cs434\trunk\p1\proj\ppc.h
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\m33.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\tmesh.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\EnvMap.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\CGInterface.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\Cg/cgGL.h
+         Note: including file:    C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\Cg/cg.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/gl.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\Cg/cg.h
+         framebuffer.cpp
+         Note: including file: c:\users\ehissey\desktop\cs434\trunk\p1\proj\framebuffer.h
+         Note: including file:  C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl.H
+         Note: including file:   c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_utf8.h
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Export.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_types.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sal.h
+         Note: including file:       c:\program files (x86)\microsoft visual studio 10.0\vc\include\codeanalysis\sourceannotations.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\vadefs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\swprintf.inl
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdlib.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\limits.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/types.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/stat.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/stat.inl
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\locale.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ctype.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:   c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Enumerations.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Export.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_types.h
+         Note: including file:  C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl_Gl_Window.H
+         Note: including file:   c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Window.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Group.H
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Widget.H
+         Note: including file:      c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Enumerations.H
+         Note: including file:  C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\GL/glut.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/gl.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/glu.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/gl.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\v3.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\iostream
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\istream
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ostream
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ios
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocnum
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\climits
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\yvals.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\use_ansi.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cmath
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\math.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstdio
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstdlib
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\streambuf
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xiosbase
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstring
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdexcept
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\exception
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xstddef
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstddef
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stddef.h
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\eh.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\malloc.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xstring
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xmemory
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\new
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xutility
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\utility
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\iosfwd
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cwchar
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wtime.inl
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdbg.h
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\type_traits
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\limits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ymath.h
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cfloat
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\float.h
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtwrn.h
+         Note: including file:                     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xtr1common
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\typeinfo
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocinfo
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocinfo.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xdebug
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\system_error
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cerrno
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\errno.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\share.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\ppc.h
+         Note: including file:   c:\users\ehissey\desktop\cs434\trunk\p1\proj\m33.h
+         Note: including file: c:\users\ehissey\desktop\cs434\trunk\p1\proj\scene.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\gui.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl.H
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl_Double_Window.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Window.H
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl_Button.H
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\tmesh.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\EnvMap.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\CGInterface.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\Cg/cgGL.h
+         Note: including file:    C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\Cg/cg.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/gl.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\Cg/cg.h
+         Note: including file: C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\math.h
+         gui.cxx
+         Note: including file: c:\users\ehissey\desktop\cs434\trunk\p1\proj\gui.h
+         Note: including file:  C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl.H
+         Note: including file:   c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_utf8.h
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Export.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_types.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sal.h
+         Note: including file:       c:\program files (x86)\microsoft visual studio 10.0\vc\include\codeanalysis\sourceannotations.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\vadefs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\swprintf.inl
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdlib.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\limits.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/types.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/stat.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/stat.inl
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\locale.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ctype.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:   c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Enumerations.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Export.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_types.h
+         Note: including file:  C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl_Double_Window.H
+         Note: including file:   c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Window.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Group.H
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Widget.H
+         Note: including file:      c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Enumerations.H
+         Note: including file:  C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl_Button.H
+         Note: including file: c:\users\ehissey\desktop\cs434\trunk\p1\proj\scene.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\gui.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\framebuffer.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl.H
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl_Gl_Window.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Window.H
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\GL/glut.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/gl.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/glu.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/gl.h
+         Note: including file:   c:\users\ehissey\desktop\cs434\trunk\p1\proj\v3.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\iostream
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\istream
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ostream
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ios
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocnum
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\climits
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\yvals.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\use_ansi.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cmath
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\math.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstdio
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstdlib
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\streambuf
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xiosbase
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstring
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdexcept
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\exception
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xstddef
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstddef
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stddef.h
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\eh.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\malloc.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xstring
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xmemory
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\new
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xutility
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\utility
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\iosfwd
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cwchar
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wtime.inl
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdbg.h
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\type_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\limits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ymath.h
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cfloat
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\float.h
+         Note: including file:                     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtwrn.h
+         Note: including file:                      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xtr1common
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\typeinfo
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocinfo
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocinfo.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xdebug
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\system_error
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cerrno
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\errno.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\share.h
+         Note: including file:   c:\users\ehissey\desktop\cs434\trunk\p1\proj\ppc.h
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\m33.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\tmesh.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\EnvMap.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\CGInterface.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\Cg/cgGL.h
+         Note: including file:    C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\Cg/cg.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/gl.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\Cg/cg.h
+         ppc.cpp
+         Note: including file: c:\users\ehissey\desktop\cs434\trunk\p1\proj\ppc.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\v3.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\iostream
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\istream
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ostream
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ios
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocnum
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\climits
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\yvals.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sal.h
+         Note: including file:            c:\program files (x86)\microsoft visual studio 10.0\vc\include\codeanalysis\sourceannotations.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\vadefs.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\use_ansi.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\limits.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cmath
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\math.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstdio
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\swprintf.inl
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstdlib
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdlib.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\streambuf
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xiosbase
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstring
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdexcept
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\exception
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xstddef
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstddef
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stddef.h
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\eh.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\malloc.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xstring
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xmemory
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\new
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xutility
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\utility
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\iosfwd
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cwchar
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wtime.inl
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdbg.h
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\type_traits
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\limits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ymath.h
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cfloat
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\float.h
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtwrn.h
+         Note: including file:                     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xtr1common
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\typeinfo
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocinfo
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocinfo.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ctype.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\locale.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xdebug
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\system_error
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cerrno
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\errno.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\share.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\m33.h
+         Note: including file: c:\users\ehissey\desktop\cs434\trunk\p1\proj\framebuffer.h
+         Note: including file:  C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl.H
+         Note: including file:   c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_utf8.h
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Export.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_types.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/types.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/stat.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/stat.inl
+         Note: including file:   c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Enumerations.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Export.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_types.h
+         Note: including file:  C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl_Gl_Window.H
+         Note: including file:   c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Window.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Group.H
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Widget.H
+         Note: including file:      c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Enumerations.H
+         Note: including file:  C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\GL/glut.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/gl.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/glu.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/gl.h
+         Note: including file: C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\math.h
+         Note: including file: C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\fstream
          scene.cpp
+         Note: including file: c:\users\ehissey\desktop\cs434\trunk\p1\proj\scene.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\gui.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_utf8.h
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Export.H
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_types.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sal.h
+         Note: including file:        c:\program files (x86)\microsoft visual studio 10.0\vc\include\codeanalysis\sourceannotations.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\vadefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\swprintf.inl
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdlib.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\limits.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/types.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/stat.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\sys/stat.inl
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\locale.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ctype.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Enumerations.H
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Export.H
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\fl_types.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl_Double_Window.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Window.H
+         Note: including file:     c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Group.H
+         Note: including file:      c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Widget.H
+         Note: including file:       c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Enumerations.H
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl_Button.H
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\framebuffer.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl.H
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\FL/Fl_Gl_Window.H
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\include\fl\Fl_Window.H
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\GL/glut.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/gl.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/glu.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/gl.h
+         Note: including file:   c:\users\ehissey\desktop\cs434\trunk\p1\proj\v3.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\iostream
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\istream
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ostream
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ios
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocnum
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\climits
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\yvals.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\use_ansi.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cmath
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\math.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstdio
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstdlib
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\streambuf
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xiosbase
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocale
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstring
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdexcept
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\exception
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xstddef
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstddef
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stddef.h
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\eh.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\malloc.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xstring
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xmemory
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\new
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xutility
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\utility
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\iosfwd
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cwchar
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wtime.inl
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdbg.h
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\type_traits
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\limits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ymath.h
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cfloat
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\float.h
+         Note: including file:                     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                     C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtwrn.h
+         Note: including file:                      C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xtr1common
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xfwrap1
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xxtype_traits
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\typeinfo
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocinfo
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xlocinfo.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\xdebug
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\system_error
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cerrno
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\errno.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\share.h
+         Note: including file:   c:\users\ehissey\desktop\cs434\trunk\p1\proj\ppc.h
+         Note: including file:    c:\users\ehissey\desktop\cs434\trunk\p1\proj\m33.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\tmesh.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\EnvMap.h
+         Note: including file:  c:\users\ehissey\desktop\cs434\trunk\p1\proj\CGInterface.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\Cg/cgGL.h
+         Note: including file:    C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\Cg/cg.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\GL/gl.h
+         Note: including file:   C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\include\Cg/cg.h
+         Note: including file: c:\users\ehissey\desktop\cs434\trunk\p1\proj\CImg.h
+         Note: including file:  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\cstdarg
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdarg.h
+         Note: including file:  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\ctime
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\time.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\time.inl
+         Note: including file:  C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\windows.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\sdkddkver.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\excpt.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\windef.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\winnt.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\specstrings.h
+         Note: including file:      c:\program files (x86)\microsoft sdks\windows\v7.0a\include\sal_supp.h
+         Note: including file:      c:\program files (x86)\microsoft sdks\windows\v7.0a\include\specstrings_supp.h
+         Note: including file:      C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\specstrings_strict.h
+         Note: including file:       C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\specstrings_undef.h
+         Note: including file:      C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\driverspecs.h
+         Note: including file:       c:\program files (x86)\microsoft sdks\windows\v7.0a\include\sdv_driverspecs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\kernelspecs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\basetsd.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\guiddef.h
+         Note: including file:     c:\program files (x86)\microsoft sdks\windows\v7.0a\include\pshpack4.h
+         Note: including file:     c:\program files (x86)\microsoft sdks\windows\v7.0a\include\poppack.h
+         Note: including file:     c:\program files (x86)\microsoft sdks\windows\v7.0a\include\pshpack4.h
+         Note: including file:     c:\program files (x86)\microsoft sdks\windows\v7.0a\include\poppack.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack4.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:     c:\program files (x86)\microsoft sdks\windows\v7.0a\include\pshpack4.h
+         Note: including file:     c:\program files (x86)\microsoft sdks\windows\v7.0a\include\pshpack2.h
+         Note: including file:     c:\program files (x86)\microsoft sdks\windows\v7.0a\include\poppack.h
+         Note: including file:     c:\program files (x86)\microsoft sdks\windows\v7.0a\include\pshpack2.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack2.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:     c:\program files (x86)\microsoft sdks\windows\v7.0a\include\poppack.h
+         Note: including file:     c:\program files (x86)\microsoft sdks\windows\v7.0a\include\pshpack8.h
+         Note: including file:     c:\program files (x86)\microsoft sdks\windows\v7.0a\include\poppack.h
+         Note: including file:     c:\program files (x86)\microsoft sdks\windows\v7.0a\include\poppack.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ktmtypes.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\winbase.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\winerror.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\wingdi.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack2.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack2.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack4.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack4.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\winuser.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack2.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\tvout.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\winnls.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\wincon.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\winver.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\verrsrc.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\winreg.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\reason.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\winnetwk.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\wnnc.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\cderr.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\dde.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ddeml.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\dlgs.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\lzexpand.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\mmsystem.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\nb30.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\rpc.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\rpcdce.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\rpcdcep.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\rpcnsi.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\rpcnterr.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\rpcasync.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\shellapi.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\winperf.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\winsock.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\inaddr.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\wincrypt.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\bcrypt.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ncrypt.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\bcrypt.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\winefs.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\winscard.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\wtypes.h
+         Note: including file:     c:\program files (x86)\microsoft sdks\windows\v7.0a\include\rpcndr.h
+         Note: including file:      C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:      C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\rpcnsip.h
+         Note: including file:      C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\rpcsal.h
+         Note: including file:      C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:     c:\program files (x86)\microsoft sdks\windows\v7.0a\include\guiddef.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\winioctl.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    c:\program files (x86)\microsoft sdks\windows\v7.0a\include\winsmcrd.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\winspool.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\prsht.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack4.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ole2.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\objbase.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\unknwn.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\objidl.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\guiddef.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\cguid.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\urlmon.h
+         Note: including file:      c:\program files (x86)\microsoft sdks\windows\v7.0a\include\oleidl.h
+         Note: including file:      c:\program files (x86)\microsoft sdks\windows\v7.0a\include\servprov.h
+         Note: including file:      c:\program files (x86)\microsoft sdks\windows\v7.0a\include\msxml.h
+         Note: including file:       c:\program files (x86)\microsoft sdks\windows\v7.0a\include\oaidl.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\propidl.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\oleauto.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\commdlg.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\prsht.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\stralign.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\winsvc.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\mcx.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\imm.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\ime_cmodes.h
+         Note: including file:  C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\shlobj.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\commctrl.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\prsht.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\shlguid.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\isguids.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\exdisp.h
+         Note: including file:     c:\program files (x86)\microsoft sdks\windows\v7.0a\include\ocidl.h
+         Note: including file:     c:\program files (x86)\microsoft sdks\windows\v7.0a\include\docobj.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\shldisp.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\knownfolders.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\shtypes.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\shobjidl.h
+         Note: including file:    c:\program files (x86)\microsoft sdks\windows\v7.0a\include\comcat.h
+         Note: including file:    c:\program files (x86)\microsoft sdks\windows\v7.0a\include\prsht.h
+         Note: including file:    c:\program files (x86)\microsoft sdks\windows\v7.0a\include\propsys.h
+         Note: including file:     c:\program files (x86)\microsoft sdks\windows\v7.0a\include\StructuredQueryCondition.h
+         Note: including file:     C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\propkeydef.h
+         Note: including file:    c:\program files (x86)\microsoft sdks\windows\v7.0a\include\ObjectArray.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\sherrors.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\prsht.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:    C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack1.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\pshpack8.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:   C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include\poppack.h
+         Note: including file:  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\process.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
+         Note: including file:  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\io.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\crtdefs.h
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\code.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\\lib cg.lib cgGL.lib tiff.lib fltk.lib fltkgl.lib opengl32.lib glu32.lib wsock32.lib comctl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\code.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\code.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\code.lib" /MACHINE:X86 Release\CGInterface.obj
+         Release\EnvMap.obj
          Release\framebuffer.obj
          Release\gui.obj
          Release\m33.obj
@@ -92,4 +1126,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:06.23
+Time Elapsed 00:00:07.47

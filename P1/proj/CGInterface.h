@@ -1,5 +1,8 @@
 #pragma once
 
+#pragma comment(lib, "cg.lib")
+#pragma comment(lib, "cggl.lib")
+
 #include <Cg/cgGL.h>
 #include <Cg/cg.h>
 
