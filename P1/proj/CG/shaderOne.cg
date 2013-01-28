@@ -1,0 +1,56 @@
+
+struct VertexDataInput {
+	float4 vertex: POSITION;
+	float3 normal: NORMAL;
+	float3 color: COLOR;
+};
+
+struct VertexDataOutput {
+	float4 projv  : POSITION;
+	float4 color : COLOR;
+	float3 vertex: TEXCOORD0;
+	float3 normal: TEXCOORD1;
+};
+
+struct PixelDataOutput {
+	float4 color : COLOR0;
+};
+
+VertexDataOutput VertexMain(VertexDataInput vdi, 
+  uniform float4x4 modelViewProj) {
+
+  VertexDataOutput ret;
+  ret.projv = mul(modelViewProj, vdi.vertex);
+  ret.color = float4(vdi.color, 1.0f);
+  ret.vertex = vdi.vertex.xyz;
+  ret.normal = vdi.normal;
+
+  ret.projv = mul(modelViewProj, vdi.vertex);
+
+  return ret;
+
+}
+
+TRIANGLE void GeometryMain(AttribArray<VertexDataOutput> tverts,
+	uniform float4x4 modelViewProj) {
+
+	emitVertex(tverts[0]);
+	emitVertex(tverts[1]);
+	emitVertex(tverts[2]);
+	return;
+
+}
+
+PixelDataOutput FragmentMain(VertexDataOutput pdi, 
+	uniform float blueHue, uniform float3 eye) {
+
+  PixelDataOutput ret;
+  ret.color = pdi.color;
+//  ret.color.rg = ret.color.rg*blueHue;
+//  ret.color.b = ret.color.b/blueHue;
+  ret.color.rgb = eye;
+  return ret;
+  
+}
+
+

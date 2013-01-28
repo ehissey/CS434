@@ -1,0 +1,79 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0108 
+header_name {.h} 
+code_name {.cxx}
+class GUI {open
+} {
+  decl {\#include "scene.h"} {}
+  Function {GUI()} {open
+  } {
+    Fl_Window uiw {
+      label GUI open
+      xywh {675 144 265 290} type Double visible
+    } {
+      Fl_Button {} {
+        label DBG
+        callback {DBG_cb()}
+        xywh {15 15 225 40} selection_color 72
+      }
+      Fl_Button {} {
+        label {Save View 0}
+        callback {SaveView0B_cb()}
+        xywh {15 65 95 40}
+      }
+      Fl_Button {} {
+        label {Load View 0}
+        callback {LoadView0B_cb()}
+        xywh {15 110 95 40}
+      }
+      Fl_Button {} {
+        label {Go To View 0}
+        callback {GoToView0B_cb()}
+        xywh {15 155 95 40}
+      }
+      Fl_Button {} {
+        label {Save View 1}
+        callback {SaveView1B_cb()}
+        xywh {140 65 95 40}
+      }
+      Fl_Button {} {
+        label {Load View 1}
+        callback {LoadView1B_cb()}
+        xywh {140 110 95 40}
+      }
+      Fl_Button {} {
+        label {Go To View 1}
+        callback {GoToView1B_cb()}
+        xywh {140 155 95 40}
+      }
+    }
+  }
+  Function {} {open
+  } {
+    code {scene = new Scene;} {}
+  }
+  Function {show()} {} {
+    code {uiw->show();} {}
+  }
+  Function {DBG_cb()} {} {
+    code {scene->DBG();} {}
+  }
+  Function {SaveView0B_cb()} {} {
+    code {scene->SaveView0();} {}
+  }
+  Function {LoadView0B_cb()} {} {
+    code {scene->LoadView0();} {}
+  }
+  Function {GoToView0B_cb()} {} {
+    code {scene->GoToView0();} {}
+  }
+  Function {SaveView1B_cb()} {} {
+    code {scene->SaveView1();} {}
+  }
+  Function {LoadView1B_cb()} {} {
+    code {scene->LoadView1();} {}
+  }
+  Function {GoToView1B_cb()} {} {
+    code {scene->GoToView1();} {}
+  }
+} 
