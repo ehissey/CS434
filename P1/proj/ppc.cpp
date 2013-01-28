@@ -145,7 +145,7 @@ V3 PPC::GetPoint(float uf, float vf, float z) {
 
 void PPC::RenderImageFrameGL() {
 
-  float bf = 5.0f;
+  float bf = 0.0f;
   glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
   float zMed = (zNear + zFar) / 2.0f;
   V3 V;

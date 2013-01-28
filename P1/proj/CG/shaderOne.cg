@@ -25,8 +25,6 @@ VertexDataOutput VertexMain(VertexDataInput vdi,
   ret.vertex = vdi.vertex.xyz;
   ret.normal = vdi.normal;
 
-  ret.projv = mul(modelViewProj, vdi.vertex);
-
   return ret;
 
 }
@@ -42,15 +40,32 @@ TRIANGLE void GeometryMain(AttribArray<VertexDataOutput> tverts,
 }
 
 PixelDataOutput FragmentMain(VertexDataOutput pdi, 
-	uniform float blueHue, uniform float3 eye) {
+	uniform float3 eyeCam, uniform samplerCube cMap,
+    uniform float bg) 
+    {
 
-  PixelDataOutput ret;
-  ret.color = pdi.color;
-//  ret.color.rg = ret.color.rg*blueHue;
-//  ret.color.b = ret.color.b/blueHue;
-  ret.color.rgb = eye;
-  return ret;
-  
+    
+    PixelDataOutput returnColor;
+
+    float3 curPix = pdi.vertex;
+    float3 eyeToPix = normalize(curPix - eyeCam);
+
+    if(bg == 0.0f)
+    {
+        float3 pixNorm = normalize(pdi.normal);
+        
+        float3 reflecVec = normalize(eyeToPix - 2 * dot(eyeToPix, pixNorm) * pixNorm);
+    
+
+        returnColor.color = texCUBE(cMap, reflecVec);
+
+    }
+    else
+    {
+        returnColor.color = texCUBE(cMap, eyeToPix);
+    }
+
+    return returnColor;
 }
 
 

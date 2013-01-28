@@ -12,103 +12,106 @@ CGInterface::CGInterface() : needInit(true) {};
 
 void CGInterface::PerSessionInit() {
 
-  glEnable(GL_DEPTH_TEST);
+    glEnable(GL_DEPTH_TEST);
 
-  CGprofile latestVertexProfile = cgGLGetLatestProfile(CG_GL_VERTEX);
-  CGprofile latestGeometryProfile = cgGLGetLatestProfile(CG_GL_GEOMETRY);
-  CGprofile latestPixelProfile = cgGLGetLatestProfile(CG_GL_FRAGMENT);
+    CGprofile latestVertexProfile = cgGLGetLatestProfile(CG_GL_VERTEX);
+    CGprofile latestGeometryProfile = cgGLGetLatestProfile(CG_GL_GEOMETRY);
+    CGprofile latestPixelProfile = cgGLGetLatestProfile(CG_GL_FRAGMENT);
 
-  if (latestGeometryProfile == CG_PROFILE_UNKNOWN) {
-    cerr << "ERROR: geometry profile is not available" << endl;
+    if (latestGeometryProfile == CG_PROFILE_UNKNOWN) {
+        cerr << "ERROR: geometry profile is not available" << endl;
 #ifdef GEOM_SHADER
-    exit(0);
+        exit(0);
 #endif
-  }
+    }
 
-  cgGLSetOptimalOptions(latestGeometryProfile);
-  CGerror Error = cgGetError();
-  if (Error) {
-	  cerr << "CG ERROR: " << cgGetErrorString(Error) << endl;
-  }
+    cgGLSetOptimalOptions(latestGeometryProfile);
+    CGerror Error = cgGetError();
+    if (Error) {
+        cerr << "CG ERROR: " << cgGetErrorString(Error) << endl;
+    }
 
-  cout << "Info: Latest GP Profile Supported: " << cgGetProfileString(latestGeometryProfile) << endl;
+    cout << "Info: Latest GP Profile Supported: " << cgGetProfileString(latestGeometryProfile) << endl;
 
-  geometryCGprofile = latestGeometryProfile;
+    geometryCGprofile = latestGeometryProfile;
 
-  cout << "Info: Latest VP Profile Supported: " << cgGetProfileString(latestVertexProfile) << endl;
-  cout << "Info: Latest FP Profile Supported: " << cgGetProfileString(latestPixelProfile) << endl;
+    cout << "Info: Latest VP Profile Supported: " << cgGetProfileString(latestVertexProfile) << endl;
+    cout << "Info: Latest FP Profile Supported: " << cgGetProfileString(latestPixelProfile) << endl;
 
-  vertexCGprofile = latestVertexProfile;
-  pixelCGprofile = latestPixelProfile;
-  cgContext = cgCreateContext();  
+    vertexCGprofile = latestVertexProfile;
+    pixelCGprofile = latestPixelProfile;
+    cgContext = cgCreateContext();  
 
-  needInit = false;
+    needInit = false;
 
 }
 
 bool ShaderOneInterface::PerSessionInit(CGInterface *cgi) {
 
 #ifdef GEOM_SHADER
-  geometryProgram = cgCreateProgramFromFile(cgi->cgContext, CG_SOURCE, 
-    "CG/shaderOne.cg", cgi->geometryCGprofile, "GeometryMain", NULL);
-  if (geometryProgram == NULL)  {
-    CGerror Error = cgGetError();
-    cerr << "Shader One Geometry Program COMPILE ERROR: " << cgGetErrorString(Error) << endl;
-    cerr << cgGetLastListing(cgi->cgContext) << endl << endl;
-    return false;
-  }
+    geometryProgram = cgCreateProgramFromFile(cgi->cgContext, CG_SOURCE, 
+        "CG/shaderOne.cg", cgi->geometryCGprofile, "GeometryMain", NULL);
+    if (geometryProgram == NULL)  {
+        CGerror Error = cgGetError();
+        cerr << "Shader One Geometry Program COMPILE ERROR: " << cgGetErrorString(Error) << endl;
+        cerr << cgGetLastListing(cgi->cgContext) << endl << endl;
+        return false;
+    }
 #endif
 
-  vertexProgram = cgCreateProgramFromFile(cgi->cgContext, CG_SOURCE, 
-    "CG/shaderOne.cg", cgi->vertexCGprofile, "VertexMain", NULL);
-  if (vertexProgram == NULL) {
-    CGerror Error = cgGetError();
-    cerr << "Shader One Geometry Program COMPILE ERROR: " << cgGetErrorString(Error) << endl;
-    cerr << cgGetLastListing(cgi->cgContext) << endl << endl;
-    return false;
-  }
+    vertexProgram = cgCreateProgramFromFile(cgi->cgContext, CG_SOURCE, 
+        "CG/shaderOne.cg", cgi->vertexCGprofile, "VertexMain", NULL);
+    if (vertexProgram == NULL) {
+        CGerror Error = cgGetError();
+        cerr << "Shader One Geometry Program COMPILE ERROR: " << cgGetErrorString(Error) << endl;
+        cerr << cgGetLastListing(cgi->cgContext) << endl << endl;
+        return false;
+    }
 
-  fragmentProgram = cgCreateProgramFromFile(cgi->cgContext, CG_SOURCE, 
-    "CG/shaderOne.cg", cgi->pixelCGprofile, "FragmentMain", NULL);
-  if (fragmentProgram == NULL)  {
-    CGerror Error = cgGetError();
-    cerr << "Shader One Fragment Program COMPILE ERROR: " << cgGetErrorString(Error) << endl;
-    cerr << cgGetLastListing(cgi->cgContext) << endl << endl;
-    return false;
-  }
+    fragmentProgram = cgCreateProgramFromFile(cgi->cgContext, CG_SOURCE, 
+        "CG/shaderOne.cg", cgi->pixelCGprofile, "FragmentMain", NULL);
+    if (fragmentProgram == NULL)  {
+        CGerror Error = cgGetError();
+        cerr << "Shader One Fragment Program COMPILE ERROR: " << cgGetErrorString(Error) << endl;
+        cerr << cgGetLastListing(cgi->cgContext) << endl << endl;
+        return false;
+    }
 
-	// load programs
+    // load programs
 #ifdef GEOM_SHADER
-	cgGLLoadProgram(geometryProgram);
+    cgGLLoadProgram(geometryProgram);
 #endif
-	cgGLLoadProgram(vertexProgram);
-	cgGLLoadProgram(fragmentProgram);
+    cgGLLoadProgram(vertexProgram);
+    cgGLLoadProgram(fragmentProgram);
 
-	// build some parameters by name such that we can set them later...
-  vertexModelViewProj = cgGetNamedParameter(vertexProgram, "modelViewProj" );
-  geometryModelViewProj = cgGetNamedParameter(geometryProgram, "modelViewProj" );
-  fragmentBlueHue = cgGetNamedParameter(fragmentProgram, "blueHue" );
-  fragmentEye = cgGetNamedParameter(fragmentProgram, "eye" );
+    // build some parameters by name such that we can set them later...
+    vertexModelViewProj = cgGetNamedParameter(vertexProgram, "modelViewProj" );
+    geometryModelViewProj = cgGetNamedParameter(geometryProgram, "modelViewProj" );
 
-  return true;
+    eyePix = cgGetNamedParameter(fragmentProgram, "eyeCam");
+    bgPix = cgGetNamedParameter(fragmentProgram, "bg");
+    cMapPix = cgGetNamedParameter(fragmentProgram, "cMap");
+
+    return true;
 
 }
 
 void ShaderOneInterface::PerFrameInit() {
 
-	//set parameters
-	cgGLSetStateMatrixParameter(vertexModelViewProj, 
-		CG_GL_MODELVIEW_PROJECTION_MATRIX, 
-    CG_GL_MATRIX_IDENTITY);
+    //set parameters
+    cgGLSetStateMatrixParameter(vertexModelViewProj, 
+        CG_GL_MODELVIEW_PROJECTION_MATRIX, 
+        CG_GL_MATRIX_IDENTITY);
 
-  cgGLSetStateMatrixParameter(geometryModelViewProj, 
-		CG_GL_MODELVIEW_PROJECTION_MATRIX, 
-    CG_GL_MATRIX_IDENTITY);
-
-  static float blueHue = 0.5f;
-  cgGLSetParameter1f(fragmentBlueHue, blueHue);
-  float eye[3] = {1.0f, 1.0f, 0.0f};
-  cgGLSetParameter3fv(fragmentEye, eye);
+#ifdef GEOMETRY_SUPPORT
+    cgGLSetStateMatrixParameter(geometryModelViewProj, 
+        CG_GL_MODELVIEW_PROJECTION_MATRIX, 
+        CG_GL_MATRIX_IDENTITY);
+#endif
+    cgGLSetParameter3fv(eyePix, (float*)&(scene->ppc->C));
+    cgGLSetTextureParameter(cMapPix, scene->eMap->ID);
+    cgGLEnableTextureParameter(cMapPix);
+    cgGLSetParameter1f(bgPix, scene->isRenderingBG);
 
 }
 
@@ -119,30 +122,30 @@ void ShaderOneInterface::PerFrameDisable() {
 void ShaderOneInterface::BindPrograms() {
 
 #ifdef GEOM_SHADER
-  cgGLBindProgram( geometryProgram);
+    cgGLBindProgram( geometryProgram);
 #endif
-  cgGLBindProgram( vertexProgram);
-  cgGLBindProgram( fragmentProgram);
+    cgGLBindProgram( vertexProgram);
+    cgGLBindProgram( fragmentProgram);
 
 }
 
 void CGInterface::DisableProfiles() {
 
-  cgGLDisableProfile(vertexCGprofile);
+    cgGLDisableProfile(vertexCGprofile);
 #ifdef GEOM_SHADER
-  cgGLDisableProfile(geometryCGprofile);
+    cgGLDisableProfile(geometryCGprofile);
 #endif
-  cgGLDisableProfile(pixelCGprofile);
+    cgGLDisableProfile(pixelCGprofile);
 
 }
 
 void CGInterface::EnableProfiles() {
 
-  cgGLEnableProfile(vertexCGprofile);
+    cgGLEnableProfile(vertexCGprofile);
 #ifdef GEOM_SHADER
-  cgGLEnableProfile(geometryCGprofile);
+    cgGLEnableProfile(geometryCGprofile);
 #endif
-  cgGLEnableProfile(pixelCGprofile);
+    cgGLEnableProfile(pixelCGprofile);
 
 }
 

@@ -29,7 +29,7 @@ Scene::Scene() {
     int h = sci*180;
     fb = new FrameBuffer(u0, v0, w, h);
     fb->label("SW Framebuffer");
-    fb->show();
+    //fb->show();
 
     // create HW framebuffer
     hwfb = new FrameBuffer(u0+fb->w+20, v0, w, h);
@@ -89,7 +89,7 @@ void Scene::Render() {
         //        this is needed since with FLTK one can only make GL calls from FrameBuffer::draw
         hwfb->redraw();
     }
-
+    return;
     // SW rendering
     FrameSetup();
 
@@ -192,7 +192,7 @@ void Scene::FrameSetupHW() {
     //  glEnable(GL_CULL_FACE);
 
     // frame setup
-    glClearColor(0.5f, 1.0f, 1.0f, 1.0f);
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | 
         GL_DEPTH_BUFFER_BIT);
 
@@ -240,7 +240,13 @@ void Scene::RenderGPU() {
 
     if(eMap)
     {
-        
+        isRenderingBG = 1.0f;
+        soi->PerFrameInit();
+        soi->BindPrograms();
+        cgi->EnableProfiles();
+        ppc->RenderImageFrameGL();
+        cgi->DisableProfiles();
+        isRenderingBG = 0.0f;
     }
 
     // per frame parameter setting and enabling shaders
@@ -251,10 +257,9 @@ void Scene::RenderGPU() {
     // issue geometry to be rendered with the shaders enabled above
     for(int i = 0; i < tmsN; i++)
     {
-
-        tms[0].RenderHW();
-        tms[1].RenderHW();
+        tms[i].RenderHW();
     }
+
     // disable GPU rendering
     soi->PerFrameDisable();
     cgi->DisableProfiles();

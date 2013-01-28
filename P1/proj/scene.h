@@ -26,7 +26,7 @@ public:
     FrameBuffer *fb, *hwfb; // SW and HW framebuffers
     EnvMap * eMap;
 
-    bool hasRenderedBG;
+    float isRenderingBG;
 
     Scene();
     void DBG();
