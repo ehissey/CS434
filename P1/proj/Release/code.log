@@ -1,9 +1,10 @@
-﻿Build started 1/27/2013 8:50:53 PM.
+﻿Build started 1/27/2013 10:02:54 PM.
      1>Project "C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\code.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "Release\code.unsuccessfulbuild".
+         Creating "Release\code.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Users\ehissey\Desktop\CS434\trunk\P1\proj\\include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt scene.cpp
+         scene.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\code.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\\lib cg.lib cgGL.lib tiff.lib fltk.lib fltkgl.lib opengl32.lib glu32.lib wsock32.lib comctl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\code.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\code.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\code.lib" /MACHINE:X86 Release\CGInterface.obj
          Release\framebuffer.obj
@@ -13,114 +14,82 @@
          Release\scene.obj
          Release\tmesh.obj
          Release\v3.obj
-     1>tiff.lib(tif_getimage.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
-     1>LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
-     1>scene.obj : error LNK2001: unresolved external symbol _TIFFOpen
-     1>tiff.lib(tif_lzw.obj) : error LNK2001: unresolved external symbol __TIFFmalloc
-     1>tiff.lib(tif_zip.obj) : error LNK2001: unresolved external symbol __TIFFmalloc
-     1>tiff.lib(tif_fax3.obj) : error LNK2001: unresolved external symbol __TIFFmalloc
-     1>tiff.lib(tif_ojpeg.obj) : error LNK2001: unresolved external symbol __TIFFmalloc
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol __TIFFmalloc
-     1>tiff.lib(tif_dirread.obj) : error LNK2001: unresolved external symbol __TIFFmalloc
-     1>tiff.lib(tif_dirwrite.obj) : error LNK2001: unresolved external symbol __TIFFmalloc
-     1>tiff.lib(tif_write.obj) : error LNK2001: unresolved external symbol __TIFFmalloc
-     1>tiff.lib(tif_luv.obj) : error LNK2001: unresolved external symbol __TIFFmalloc
-     1>tiff.lib(tif_aux.obj) : error LNK2001: unresolved external symbol __TIFFmalloc
-     1>tiff.lib(tif_read.obj) : error LNK2001: unresolved external symbol __TIFFmalloc
-     1>tiff.lib(tif_dirinfo.obj) : error LNK2001: unresolved external symbol __TIFFmalloc
-     1>tiff.lib(tif_compress.obj) : error LNK2001: unresolved external symbol __TIFFmalloc
-     1>scene.obj : error LNK2001: unresolved external symbol __TIFFmalloc
-     1>tiff.lib(tif_getimage.obj) : error LNK2001: unresolved external symbol __TIFFmalloc
-     1>tiff.lib(tif_dir.obj) : error LNK2001: unresolved external symbol __TIFFmalloc
-     1>tiff.lib(tif_open.obj) : error LNK2001: unresolved external symbol __TIFFmalloc
-     1>tiff.lib(tif_fax3.obj) : error LNK2001: unresolved external symbol __TIFFfree
-     1>tiff.lib(tif_ojpeg.obj) : error LNK2001: unresolved external symbol __TIFFfree
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol __TIFFfree
-     1>tiff.lib(tif_lzw.obj) : error LNK2001: unresolved external symbol __TIFFfree
-     1>tiff.lib(tif_dirwrite.obj) : error LNK2001: unresolved external symbol __TIFFfree
-     1>tiff.lib(tif_write.obj) : error LNK2001: unresolved external symbol __TIFFfree
-     1>tiff.lib(tif_luv.obj) : error LNK2001: unresolved external symbol __TIFFfree
-     1>tiff.lib(tif_zip.obj) : error LNK2001: unresolved external symbol __TIFFfree
-     1>tiff.lib(tif_read.obj) : error LNK2001: unresolved external symbol __TIFFfree
-     1>tiff.lib(tif_dirinfo.obj) : error LNK2001: unresolved external symbol __TIFFfree
-     1>tiff.lib(tif_compress.obj) : error LNK2001: unresolved external symbol __TIFFfree
-     1>tiff.lib(tif_dirread.obj) : error LNK2001: unresolved external symbol __TIFFfree
-     1>scene.obj : error LNK2001: unresolved external symbol __TIFFfree
-     1>tiff.lib(tif_getimage.obj) : error LNK2001: unresolved external symbol __TIFFfree
-     1>tiff.lib(tif_close.obj) : error LNK2001: unresolved external symbol __TIFFfree
-     1>tiff.lib(tif_dir.obj) : error LNK2001: unresolved external symbol __TIFFfree
-     1>tiff.lib(tif_getimage.obj) : error LNK2001: unresolved external symbol __TIFFmemcmp
-     1>tiff.lib(tif_dirwrite.obj) : error LNK2001: unresolved external symbol __TIFFmemcmp
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol __TIFFmemcpy
-     1>tiff.lib(tif_next.obj) : error LNK2001: unresolved external symbol __TIFFmemcpy
-     1>tiff.lib(tif_packbits.obj) : error LNK2001: unresolved external symbol __TIFFmemcpy
-     1>tiff.lib(tif_dumpmode.obj) : error LNK2001: unresolved external symbol __TIFFmemcpy
-     1>tiff.lib(tif_dirread.obj) : error LNK2001: unresolved external symbol __TIFFmemcpy
-     1>tiff.lib(tif_dirwrite.obj) : error LNK2001: unresolved external symbol __TIFFmemcpy
-     1>tiff.lib(tif_fax3.obj) : error LNK2001: unresolved external symbol __TIFFmemcpy
-     1>tiff.lib(tif_ojpeg.obj) : error LNK2001: unresolved external symbol __TIFFmemcpy
-     1>tiff.lib(tif_getimage.obj) : error LNK2001: unresolved external symbol __TIFFmemcpy
-     1>tiff.lib(tif_dir.obj) : error LNK2001: unresolved external symbol __TIFFmemcpy
-     1>tiff.lib(tif_aux.obj) : error LNK2001: unresolved external symbol __TIFFmemcpy
-     1>tiff.lib(tif_read.obj) : error LNK2001: unresolved external symbol __TIFFmemcpy
-     1>tiff.lib(tif_luv.obj) : error LNK2001: unresolved external symbol __TIFFmemset
-     1>tiff.lib(tif_fax3.obj) : error LNK2001: unresolved external symbol __TIFFmemset
-     1>tiff.lib(tif_lzw.obj) : error LNK2001: unresolved external symbol __TIFFmemset
-     1>tiff.lib(tif_getimage.obj) : error LNK2001: unresolved external symbol __TIFFmemset
-     1>tiff.lib(tif_dir.obj) : error LNK2001: unresolved external symbol __TIFFmemset
-     1>tiff.lib(tif_open.obj) : error LNK2001: unresolved external symbol __TIFFmemset
-     1>tiff.lib(tif_write.obj) : error LNK2001: unresolved external symbol __TIFFmemset
-     1>tiff.lib(tif_error.obj) : error LNK2001: unresolved external symbol __TIFFerrorHandler
-     1>tiff.lib(tif_warning.obj) : error LNK2001: unresolved external symbol __TIFFwarningHandler
-     1>tiff.lib(tif_dirinfo.obj) : error LNK2001: unresolved external symbol __TIFFrealloc
-     1>tiff.lib(tif_write.obj) : error LNK2001: unresolved external symbol __TIFFrealloc
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol __TIFFrealloc
-     1>tiff.lib(tif_zip.obj) : error LNK2001: unresolved external symbol _inflateInit_
-     1>tiff.lib(tif_zip.obj) : error LNK2001: unresolved external symbol _inflateReset
-     1>tiff.lib(tif_zip.obj) : error LNK2001: unresolved external symbol _inflateSync
-     1>tiff.lib(tif_zip.obj) : error LNK2001: unresolved external symbol _inflate
-     1>tiff.lib(tif_zip.obj) : error LNK2001: unresolved external symbol _deflateInit_
-     1>tiff.lib(tif_zip.obj) : error LNK2001: unresolved external symbol _deflateReset
-     1>tiff.lib(tif_zip.obj) : error LNK2001: unresolved external symbol _deflate
-     1>tiff.lib(tif_zip.obj) : error LNK2001: unresolved external symbol _deflateEnd
-     1>tiff.lib(tif_zip.obj) : error LNK2001: unresolved external symbol _inflateEnd
-     1>tiff.lib(tif_zip.obj) : error LNK2001: unresolved external symbol _deflateParams
-     1>tiff.lib(tif_ojpeg.obj) : error LNK2001: unresolved external symbol _jpeg_CreateDecompress
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_CreateDecompress
-     1>tiff.lib(tif_ojpeg.obj) : error LNK2001: unresolved external symbol _jpeg_std_error
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_std_error
-     1>tiff.lib(tif_ojpeg.obj) : error LNK2001: unresolved external symbol _jpeg_abort
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_abort
-     1>tiff.lib(tif_ojpeg.obj) : error LNK2001: unresolved external symbol _jpeg_resync_to_restart
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_resync_to_restart
-     1>tiff.lib(tif_ojpeg.obj) : error LNK2001: unresolved external symbol _jpeg_read_header
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_read_header
-     1>tiff.lib(tif_ojpeg.obj) : error LNK2001: unresolved external symbol _jpeg_start_decompress
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_start_decompress
-     1>tiff.lib(tif_ojpeg.obj) : error LNK2001: unresolved external symbol _jpeg_reset_huff_decode
-     1>tiff.lib(tif_ojpeg.obj) : error LNK2001: unresolved external symbol _jpeg_finish_decompress
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_finish_decompress
-     1>tiff.lib(tif_ojpeg.obj) : error LNK2001: unresolved external symbol _jpeg_read_scanlines
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_read_scanlines
-     1>tiff.lib(tif_ojpeg.obj) : error LNK2001: unresolved external symbol _jpeg_read_raw_data
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_read_raw_data
-     1>tiff.lib(tif_ojpeg.obj) : error LNK2001: unresolved external symbol _jpeg_alloc_huff_table
-     1>tiff.lib(tif_ojpeg.obj) : error LNK2001: unresolved external symbol _jpeg_alloc_quant_table
-     1>tiff.lib(tif_ojpeg.obj) : error LNK2001: unresolved external symbol _jpeg_destroy
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_destroy
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_CreateCompress
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_set_defaults
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_set_quality
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_suppress_tables
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_write_tables
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_set_colorspace
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_start_compress
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_write_scanlines
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_write_raw_data
-     1>tiff.lib(tif_jpeg.obj) : error LNK2001: unresolved external symbol _jpeg_finish_compress
-     1>C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\code.exe : fatal error LNK1120: 42 unresolved externals
-     1>Done Building Project "C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\code.vcxproj" (build target(s)) -- FAILED.
+         Generating code
+         Finished generating code
+     1>fltk.lib(case.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(filename_list.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(filename_match.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_abort.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_arc.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_arci.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_ask.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Bitmap.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Box.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_boxtype.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Button.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_color.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_compose.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_cursor.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_curve.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Device.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_dnd.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Double_Window.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_draw.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_draw_image.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_draw_pixmap.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_font.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_get_system_colors.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_grab.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Group.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_gtk.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Image.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Input.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Input_.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_labeltype.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_line_style.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_lock.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Menu_Window.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Native_File_Chooser.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Paged_Device.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Pixmap.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_plastic.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Preferences.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Printer.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_read_image.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_rect.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Return_Button.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_round_box.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_shortcut.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Single_Window.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_symbols.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Tiled_Image.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Tooltip.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_utf.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_utf8.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(fl_vertex.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Widget.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Window.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(Fl_Window_hotspot.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(flstring.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(is_spacing.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(numericsort.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(ps_image.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(scandir.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(screen_xywh.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltk.lib(vsnprintf.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltkgl.lib(Fl_Gl_Choice.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltkgl.lib(Fl_Gl_Device_Plugin.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltkgl.lib(Fl_Gl_Window.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>fltkgl.lib(gl_draw.obj) : warning LNK4204: 'C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+         code.vcxproj -> C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\code.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\Release\code.exe;#1" /manifest Release\code.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Release\code.unsuccessfulbuild".
+         Touching "Release\code.lastbuildstate".
+     1>Done Building Project "C:\Users\ehissey\Desktop\CS434\trunk\P1\proj\code.vcxproj" (build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:00.17
+Time Elapsed 00:00:06.23

@@ -2,14 +2,14 @@
 #include "m33.h"
 #include "ppc.h"
 #include <float.h>
-#include "tiff.h"
-#include "tiffconf.h"
-#include "tiffio.h"
-#include "tiffvers.h"
+#include "CImg.h"
+#include "v3.h"
+
 
 #include <iostream>
 
 using namespace std;
+using namespace cimg_library;
 
 Scene *scene;
 
@@ -66,8 +66,14 @@ Scene::Scene() {
     tms[1].ScaleAboutCenter(size1/size0);
     tms[1].renderWF = false;
 
+
+
     // render scene
     Render();
+
+    FrameBuffer * envBuf = openImg("uffizi_cross.bmp");
+
+    envBuf->show();
 
 }
 
@@ -251,43 +257,33 @@ void Scene::RenderGPU() {
 
 }
 
-FrameBuffer * Scene::openTIFF_FB(string filename)
+FrameBuffer * Scene::openImg(string fileName)
 {
-    TIFF *FILE; 
+    CImg<unsigned char> src(fileName.c_str());
 
-    if((FILE = TIFFOpen(filename.c_str(), "r")) == 0){
-        return NULL;
-    }
+
+    int r, g, b;
+
+    int width = src.width();
+    int height = src.height();
 
     FrameBuffer * fb;
 
-    int u0 = 50;
-    int v0 = 50;
-    int w = 0;
-    int h = 0;
+    fb = new FrameBuffer(0, 0, width, height);
+    
+    for(int h = 0; h < height; h++)
+    {
+        for(int w = 0; w < width; w++)
+        {
+            r = src.atXY(w, h, 0);
+            g = src.atXY(w, h, 1);
+            b = src.atXY(w, h, 2);
 
-    TIFFGetField(FILE, TIFFTAG_IMAGEWIDTH, &w);
-    TIFFGetField(FILE, TIFFTAG_IMAGELENGTH, &h);
+            V3 colorVal((float)r/255, (float)g/255, (float)b/255);
 
-    unsigned int npix = w*h;
-    unsigned int *raster =(unsigned int *) _TIFFmalloc(npix *sizeof(unsigned int));
-
-    fb = new FrameBuffer(u0,v0,w,h);
-
-    int retval = TIFFReadRGBAImage(FILE, w, h, raster);
-
-    int i = 0;
-
-    for(int u = 0; u < w; u++){
-        for(int v = 0; v < h; v++){
-            fb->Set(u,v,raster[w*(h-1-v) + u]);
-            i++;
+            fb->Set(w, h, colorVal.GetColor());
         }
     }
-
-    TIFFClose(FILE);
-
-    _TIFFfree(raster);
 
     return fb;
 }

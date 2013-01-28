@@ -37,7 +37,7 @@ public:
     void LoadView1();
     void GoToView1();
     void GoToView(PPC *nppc);
-    FrameBuffer * openTIFF_FB(string filename);
+    FrameBuffer * openImg(string filename);
 
 };
 
