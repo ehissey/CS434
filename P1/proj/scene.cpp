@@ -45,7 +45,7 @@ Scene::Scene() {
     ppc = new PPC(hfov, w, h);
 
     // load, scale and position geometry, i.e. triangle meshes
-    tmsN = 2;
+    tmsN = 3;
     tms = new TMesh[tmsN];
     V3 center(0.0f, 0.0f, -175.0f);
     V3 side(200.0f, 0.0f, -175.0f);
@@ -63,6 +63,8 @@ Scene::Scene() {
     tms[0].renderWF = false;
     tms[1].ScaleAboutCenter(size1/size0);
     tms[1].renderWF = false;
+
+    tms[2].SetFloor();
 
 
 
@@ -233,7 +235,21 @@ void Scene::RenderGPU() {
         eMap = new EnvMap();
 
         eMap->Load(7);
-        
+
+        glBindTexture(GL_TEXTURE_2D, tms[2].floorID);
+
+        glTexParameterf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+        FrameBuffer * floorBuf = Scene::openImg("floor/checker.bmp");
+
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, floorBuf->w, floorBuf->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, floorBuf->pix);
+
     }
 
     FrameSetupHW();

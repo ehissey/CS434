@@ -19,9 +19,13 @@ public:
   int trisN; // number of triangles; tris is of size 3*trisN
   FrameBuffer *tmap; // texture map for mesh (one per mesh)
 
+  int floorID;
+  int floorIsTextured;
+
   TMesh() : enabled(true), msi(true), verts(0), vertsN(0), 
-    tris(0), trisN(0), cols(0), tcs(0), tmap(0),
-    renderWF(false), normals(0), isReflective(false) {};
+    floorID(100), floorIsTextured(0), tris(0), trisN(0), 
+    cols(0), tcs(0), tmap(0), renderWF(false), normals(0), 
+    isReflective(false) {};
 
   void SetCube(V3 center, float sl); // construct cube
   void SetRectangle(float wf, float hf, FrameBuffer *_tmap = 0); // construct rectangle
@@ -37,5 +41,6 @@ public:
   AABB GetAABB(); // get axis aligned bounding box of mesh
   void SetFromFB(FrameBuffer *fb, PPC *ppc); // construct triangle mesh from framebuffer (using depth, implicit connectivity)
   void RenderHW(); // render HW (issue geometry, per vertex parameters)
+  void SetFloor();
 };
 
