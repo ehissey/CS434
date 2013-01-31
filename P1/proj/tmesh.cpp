@@ -487,21 +487,19 @@ void TMesh::SetFloor() {
     cols = new V3[vertsN];
     tcs = new V3[vertsN];
 
-    float wf, hf, down;
+    
 
     wf = 1000.0f;
     hf = 1000.0f;
-    down = -10.0f;
+    down = -50.0f;
 
     trisN = 2;
     tris = new unsigned int[trisN*3];
 
-    verts[0] = V3(-wf/2.0f, down, hf/2.0f);
-    verts[1] = V3(wf/2.0f, down, hf/2.0f);
-    verts[2] = V3(wf/2.0f, down, -hf/2.0f);
-    verts[3] = V3(-wf/2.0f, down, -hf/2.0f);
-
-    cols[0] = cols[1] = cols[2] = cols[3] = V3(0.0f, 0.0f, 0.0f);
+    verts[0] = V3(-wf/2.0f, down, -hf/2.0f);
+    verts[1] = V3(-wf/2.0f, down, hf/2.0f);
+    verts[2] = V3(wf/2.0f, down, hf/2.0f);
+    verts[3] = V3(wf/2.0f, down, -hf/2.0f);
 
     tris[0] = 0;
     tris[1] = 1;
@@ -511,13 +509,14 @@ void TMesh::SetFloor() {
     tris[4] = 3;
     tris[5] = 0;
 
-    float mult = 100.0f;
+    float mult = 10.0f;
 
-    float * texCoords = new float [2*vertsN];
+    texCoords = new float [2*vertsN];
+
     texCoords[0] = mult * 0.0f; texCoords[1] = mult * 0.0f;
     texCoords[2] = mult * 0.0f; texCoords[3] = mult * 1.0f;
-    texCoords[3] = mult * 1.0f; texCoords[4] = mult * 1.0f;
-    texCoords[5] = mult * 1.0f; texCoords[6] = mult * 0.0f;
+    texCoords[4] = mult * 1.0f; texCoords[5] = mult * 1.0f;
+    texCoords[6] = mult * 1.0f; texCoords[7] = mult * 0.0f;
 
     floorIsTextured = 1;
 }
@@ -528,24 +527,43 @@ void TMesh::RenderHW() {
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     }
 
-    // specify vertices
     glEnableClientState(GL_VERTEX_ARRAY); // "there's going to be an array of vertices"
-    glEnableClientState(GL_COLOR_ARRAY);
-    glEnableClientState(GL_NORMAL_ARRAY);
     glVertexPointer(3, GL_FLOAT, 0, verts); // "here's the pointer to the array of vertices"
-    glColorPointer(3, GL_FLOAT, 0, cols);
-    glNormalPointer(GL_FLOAT, 0, normals);
+
+    if(floorIsTextured)
+    {
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, floorID);
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+        glTexCoordPointer(2, GL_FLOAT, 0, texCoords);
+    }
+    else
+    {
+        // specify vertices
+       glEnableClientState(GL_COLOR_ARRAY);
+       glEnableClientState(GL_NORMAL_ARRAY);
+        
+       glColorPointer(3, GL_FLOAT, 0, cols);
+       glNormalPointer(GL_FLOAT, 0, normals);
+    }
 
     // sepcify additional vertex attributes (e.g. texture coordinates, etc)
 
     // actually draw mesh by providing connectivity data
     glDrawElements(GL_TRIANGLES, 3*trisN, GL_UNSIGNED_INT, tris);
 
-    glDisableClientState(GL_NORMAL_ARRAY);
-    glDisableClientState(GL_COLOR_ARRAY);
+    if(!floorIsTextured)
+    {
+        glDisableClientState(GL_NORMAL_ARRAY);
+        glDisableClientState(GL_COLOR_ARRAY);
+    }
+    else
+    {
+        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+        glDisable(GL_TEXTURE_2D);
+    }
+
     glDisableClientState(GL_VERTEX_ARRAY);
-
-
 
     if (renderWF) {
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);

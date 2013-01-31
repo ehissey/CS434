@@ -61,12 +61,20 @@ Scene::Scene() {
     float size1 = 170.0f;
     tms[0].ScaleAboutCenter(size1/size0);
     tms[0].renderWF = false;
+    tms[0].shaderIsEnabled = 1;
     tms[1].ScaleAboutCenter(size1/size0);
     tms[1].renderWF = false;
-
+    tms[1].shaderIsEnabled = 1;
     tms[2].SetFloor();
+    tms[2].shaderIsEnabled = 0;
 
+    TMesh floorTM = tms[2];
 
+    //Set floor parameters
+    quad0 = V3(-floorTM.wf/2, floorTM.down, -floorTM.hf/2);
+    quad1 = V3(-floorTM.wf/2, floorTM.down, floorTM.hf/2);
+    quad2 = V3(floorTM.wf/2, floorTM.down, floorTM.hf/2);
+    quad3 = V3(floorTM.wf/2, floorTM.down, -floorTM.hf/2);
 
     // render scene
     Render();
@@ -246,7 +254,7 @@ void Scene::RenderGPU() {
         glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-        FrameBuffer * floorBuf = Scene::openImg("floor/checker.bmp");
+        FrameBuffer * floorBuf = openImg("floor/checker.bmp");
 
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, floorBuf->w, floorBuf->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, floorBuf->pix);
 
@@ -263,7 +271,10 @@ void Scene::RenderGPU() {
         ppc->RenderImageFrameGL();
         cgi->DisableProfiles();
         isRenderingBG = 0.0f;
+
+
     }
+    
 
     // per frame parameter setting and enabling shaders
     soi->PerFrameInit();
@@ -273,7 +284,16 @@ void Scene::RenderGPU() {
     // issue geometry to be rendered with the shaders enabled above
     for(int i = 0; i < tmsN; i++)
     {
+        if(tms[i].shaderIsEnabled)
+        {
+            cgi->EnableProfiles();
+        }
+        else
+        {
+            cgi->DisableProfiles();
+        }
         tms[i].RenderHW();
+        
     }
 
     // disable GPU rendering

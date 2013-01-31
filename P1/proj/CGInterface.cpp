@@ -89,8 +89,17 @@ bool ShaderOneInterface::PerSessionInit(CGInterface *cgi) {
     geometryModelViewProj = cgGetNamedParameter(geometryProgram, "modelViewProj" );
 
     eyePix = cgGetNamedParameter(fragmentProgram, "eyeCam");
-    bgPix = cgGetNamedParameter(fragmentProgram, "bg");
+    renderingBG = cgGetNamedParameter(fragmentProgram, "bgRendering");
+    renderingFloor =cgGetNamedParameter(fragmentProgram, "floorRendering");
     cMapPix = cgGetNamedParameter(fragmentProgram, "cMap");
+    floorPix = cgGetNamedParameter(fragmentProgram, "floor");
+
+    v0 = cgGetNamedParameter(fragmentProgram, "quad0");
+    v1 = cgGetNamedParameter(fragmentProgram, "quad1");
+    v2 = cgGetNamedParameter(fragmentProgram, "quad2");
+    v3 = cgGetNamedParameter(fragmentProgram, "quad3");
+
+
 
     return true;
 
@@ -109,9 +118,23 @@ void ShaderOneInterface::PerFrameInit() {
         CG_GL_MATRIX_IDENTITY);
 #endif
     cgGLSetParameter3fv(eyePix, (float*)&(scene->ppc->C));
+    
     cgGLSetTextureParameter(cMapPix, scene->eMap->ID);
     cgGLEnableTextureParameter(cMapPix);
-    cgGLSetParameter1f(bgPix, scene->isRenderingBG);
+    
+    cgGLSetTextureParameter(floorPix, scene->tms[2].floorID);
+    cgGLEnableTextureParameter(floorPix);
+    
+    
+    cgGLSetParameter1f(renderingBG, scene->isRenderingBG);
+
+    cgGLSetParameter1f(renderingFloor, scene->isRenderingFloor);
+
+    cgGLSetParameter3fv(v0, (float *)&(scene->quad0));
+    cgGLSetParameter3fv(v1, (float *)&(scene->quad1));
+    cgGLSetParameter3fv(v2, (float *)&(scene->quad2));
+    cgGLSetParameter3fv(v3, (float *)&(scene->quad3));
+
 
 }
 

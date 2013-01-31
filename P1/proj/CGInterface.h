@@ -38,9 +38,15 @@ class ShaderOneInterface {
   CGparameter geometryModelViewProj; // geometry shader
  
   CGparameter eyePix;
-  CGparameter bgPix;
+  CGparameter renderingBG;
+  CGparameter renderingFloor;
   CGparameter cMapPix;
+  CGparameter floorPix;
 
+  CGparameter v0;
+  CGparameter v1;
+  CGparameter v2;
+  CGparameter v3;
 
 public:
   ShaderOneInterface() {};

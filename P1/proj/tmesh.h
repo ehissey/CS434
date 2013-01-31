@@ -19,12 +19,18 @@ public:
   int trisN; // number of triangles; tris is of size 3*trisN
   FrameBuffer *tmap; // texture map for mesh (one per mesh)
 
+  float wf, hf, down;
+
+  float * texCoords;
+
+  int shaderIsEnabled;
+
   int floorID;
   int floorIsTextured;
-
+  
   TMesh() : enabled(true), msi(true), verts(0), vertsN(0), 
     floorID(100), floorIsTextured(0), tris(0), trisN(0), 
-    cols(0), tcs(0), tmap(0), renderWF(false), normals(0), 
+    cols(0), tcs(0), tmap(0), renderWF(false), normals(0), shaderIsEnabled(0), 
     isReflective(false) {};
 
   void SetCube(V3 center, float sl); // construct cube

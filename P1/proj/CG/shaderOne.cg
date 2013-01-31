@@ -41,7 +41,9 @@ TRIANGLE void GeometryMain(AttribArray<VertexDataOutput> tverts,
 
 PixelDataOutput FragmentMain(VertexDataOutput pdi, 
 	uniform float3 eyeCam, uniform samplerCube cMap,
-    uniform float bg) 
+    uniform float bgRendering, uniform float floorRendering,
+    uniform sampler2D floor, uniform float3 quad0,
+    uniform float3 quad1, uniform float3 quad2, uniform float3 quad3) 
     {
 
     
@@ -50,15 +52,42 @@ PixelDataOutput FragmentMain(VertexDataOutput pdi,
     float3 curPix = pdi.vertex;
     float3 eyeToPix = normalize(curPix - eyeCam);
 
-    if(bg == 0.0f)
+    
+    
+    if(bgRendering == 0.0f)
     {
         float3 pixNorm = normalize(pdi.normal);
         
         float3 reflecVec = normalize(eyeToPix - 2 * dot(eyeToPix, pixNorm) * pixNorm);
     
+        float3 quadNorm = normalize(cross(quad0 - quad1, quad2 - quad1));
 
-        returnColor.color = texCUBE(cMap, reflecVec);
+        float t = dot(quadNorm, quad1 - curPix) / dot(quadNorm, reflecVec);
 
+        float3 interPoint = curPix + reflecVec * t;
+
+        float3 inter0 = cross(quad1-quad0, interPoint - quad0);
+        float3 inter1 = cross(quad2-quad1, interPoint - quad1);
+        float3 inter2 = cross(quad3-quad2, interPoint - quad2);
+        float3 inter3 = cross(quad0-quad3, interPoint - quad3);
+
+        float interNorm0 = dot(quadNorm, inter0);
+        float interNorm1 = dot(quadNorm, inter1);
+        float interNorm2 = dot(quadNorm, inter2);
+        float interNorm3 = dot(quadNorm, inter3);
+
+        if((interNorm0 > 0 && interNorm1 > 0 &&
+           interNorm2 > 0 && interNorm3 > 0) || 
+           (interNorm0 < 0 && interNorm1 < 0 &&
+           interNorm2 < 0 && interNorm3 < 0) && t > 0)
+        {
+            float2 quadTexCoords = float2((interPoint.x - quad1.x)/(quad2.x-quad1.x), (interPoint.z - quad3.z)/(quad2.z-quad3.z)) * 10.0f;
+          returnColor.color = tex2D(floor, quadTexCoords);  
+        }  
+        else
+        { 
+          returnColor.color = texCUBE(cMap, reflecVec);
+        }
     }
     else
     {

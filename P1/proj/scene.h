@@ -27,6 +27,9 @@ public:
     EnvMap * eMap;
 
     float isRenderingBG;
+    float isRenderingFloor;
+
+    V3 quad0, quad1, quad2, quad3;
 
     Scene();
     void DBG();
