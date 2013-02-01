@@ -357,6 +357,11 @@ void TMesh::Load(char *fname) {
     cerr << "INFO: loaded " << vertsN << " verts, " << trisN << " tris from " << endl << "      " << fname << endl;
     cerr << "      xyz " << ((cols) ? "rgb " : "") << ((normals) ? "nxnynz " : "") << ((tcs) ? "tcstct " : "") << endl;
 
+    for(int i = 0; i < vertsN; i++)
+    {
+        cols[i] = V3(0.0f, 1.0f, 0.75f); 
+    }
+
 }
 
 void TMesh::Translate(V3 transv) {

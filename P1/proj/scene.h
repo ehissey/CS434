@@ -20,6 +20,7 @@ public:
     ShaderOneInterface *soi;
 
     PPC *ppc; // camera used to render current frame
+    PPC * dImgCam; //camera used to move ppc
     TMesh *tms; // geometry
     int tmsN; // number of triangle meshes
     GUI *gui; // user interface
@@ -28,6 +29,8 @@ public:
 
     float isRenderingBG;
     float isRenderingFloor;
+
+    int obtainedDImg;
 
     V3 quad0, quad1, quad2, quad3;
 
@@ -49,6 +52,7 @@ public:
     void GoToView1();
     void GoToView(PPC *nppc);
     static FrameBuffer * openImg(string filename);
+    void RenderDImg();
 
 };
 

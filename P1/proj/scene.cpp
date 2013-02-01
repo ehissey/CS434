@@ -44,6 +44,8 @@ Scene::Scene() {
     float hfov = 45.0f;
     ppc = new PPC(hfov, w, h);
 
+
+    obtainedDImg = 0;
     // load, scale and position geometry, i.e. triangle meshes
     tmsN = 3;
     tms = new TMesh[tmsN];
@@ -58,13 +60,16 @@ Scene::Scene() {
     tms[0].Translate(tcenter*-1.0f+center);
     tms[1].Translate(tcenter*-1.0f+side);
 
+    dImgCam = new PPC(hfov, w, h);
+
+
     float size1 = 170.0f;
     tms[0].ScaleAboutCenter(size1/size0);
     tms[0].renderWF = false;
     tms[0].shaderIsEnabled = 1;
     tms[1].ScaleAboutCenter(size1/size0);
     tms[1].renderWF = false;
-    tms[1].shaderIsEnabled = 1;
+    tms[1].shaderIsEnabled = 0;
     tms[2].SetFloor();
     tms[2].shaderIsEnabled = 0;
 
@@ -93,6 +98,8 @@ void Scene::FrameSetup() {
 // render frame
 void Scene::Render() {
 
+
+
     if (hwfb) {
         // ask to redraw HW framebuffer; will get FrameBuffer::draw called (callback), which will call either
         //        Scene::RenderHW for fixed pipeline HW rendering, or Scene::RenderGPU for GPU HW rendering;
@@ -117,7 +124,7 @@ void Scene::Render() {
         }
     }
 
-    // post pixels computed in SW by TMesh::Render functions above
+
     fb->redraw(); // this calls FrameBuffer::draw wich posts pixels with glDrawPixels;
 
 }
@@ -233,72 +240,98 @@ void Scene::RenderHW() {
 
 // gpu HW pipeline
 void Scene::RenderGPU() {
-
-    // per session initialization, i.e. once per run
-    if (cgi->needInit) 
+    if(!obtainedDImg)
     {
-        cgi->PerSessionInit();
-        soi->PerSessionInit(cgi);
-        
-        eMap = new EnvMap();
-
-        eMap->Load(7);
-
-        glBindTexture(GL_TEXTURE_2D, tms[2].floorID);
-
-        glTexParameterf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-
-        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-        FrameBuffer * floorBuf = openImg("floor/checker.bmp");
-
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, floorBuf->w, floorBuf->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, floorBuf->pix);
-
+        RenderDImg();
     }
+        //dImgCam->PositionAndOrient(tms[0].GetCenter(), (tms[1].GetCenter()- tms[0].GetCenter()).Normalized(), V3(0.0f, 1.0f, 0.0f), * ppc);
 
-    FrameSetupHW();
+        // per session initialization, i.e. once per run
+        if (cgi->needInit) 
+        {
+            cgi->PerSessionInit();
+            soi->PerSessionInit(cgi);
 
-    if(eMap)
-    {
-        isRenderingBG = 1.0f;
+            eMap = new EnvMap();
+
+            eMap->Load(7);
+
+            glBindTexture(GL_TEXTURE_2D, tms[2].floorID);
+
+            glTexParameterf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+            glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+            glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+            glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+            FrameBuffer * floorBuf = openImg("floor/checker.bmp");
+
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, floorBuf->w, floorBuf->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, floorBuf->pix);
+
+        }
+
+        FrameSetupHW();
+
+        if(eMap)
+        {
+            isRenderingBG = 1.0f;
+            soi->PerFrameInit();
+            soi->BindPrograms();
+            cgi->EnableProfiles();
+            ppc->RenderImageFrameGL();
+            cgi->DisableProfiles();
+            isRenderingBG = 0.0f;
+
+
+        }
+
+
+        // per frame parameter setting and enabling shaders
         soi->PerFrameInit();
         soi->BindPrograms();
         cgi->EnableProfiles();
-        ppc->RenderImageFrameGL();
+
+        // issue geometry to be rendered with the shaders enabled above
+        for(int i = 0; i < tmsN; i++)
+        {
+            if(tms[i].shaderIsEnabled)
+            {
+                cgi->EnableProfiles();
+            }
+            else
+            {
+                cgi->DisableProfiles();
+            }
+            tms[i].RenderHW();
+
+        }
+
+        // disable GPU rendering
+        soi->PerFrameDisable();
         cgi->DisableProfiles();
-        isRenderingBG = 0.0f;
-
-
-    }
+ 
     
 
-    // per frame parameter setting and enabling shaders
-    soi->PerFrameInit();
-    soi->BindPrograms();
-    cgi->EnableProfiles();
+
+
+}
+
+void Scene::RenderDImg() 
+{
+    ppc->PositionAndOrient(tms[0].GetCenter(), (tms[1].GetCenter()- tms[0].GetCenter()).Normalized(), V3(0.0f, 1.0f, 0.0f), * dImgCam);
+
+    FrameSetupHW();
+
+    //obtainedDImg = 1;
+
+    
 
     // issue geometry to be rendered with the shaders enabled above
-    for(int i = 0; i < tmsN; i++)
-    {
-        if(tms[i].shaderIsEnabled)
-        {
-            cgi->EnableProfiles();
-        }
-        else
-        {
-            cgi->DisableProfiles();
-        }
-        tms[i].RenderHW();
-        
-    }
+    tms[1].RenderHW();
 
-    // disable GPU rendering
-    soi->PerFrameDisable();
-    cgi->DisableProfiles();
+
 
 }
 
@@ -315,7 +348,7 @@ FrameBuffer * Scene::openImg(string fileName)
     FrameBuffer * fb;
 
     fb = new FrameBuffer(0, 0, width, height);
-    
+
     for(int h = 0; h < height; h++)
     {
         for(int w = 0; w < width; w++)
