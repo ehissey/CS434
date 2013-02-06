@@ -53,7 +53,11 @@ public:
     void GoToView(PPC *nppc);
     static FrameBuffer * openImg(string filename);
     void RenderDImg();
-
+    // depth image
+    FrameBuffer *depthImage;
+    PPC *diPPC;
+    TMesh *boundingFrustum;
+    void CaptureDepthImage();
 };
 
 extern Scene *scene;

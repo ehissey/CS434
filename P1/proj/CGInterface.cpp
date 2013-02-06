@@ -136,6 +136,8 @@ void ShaderOneInterface::PerFrameInit() {
     cgGLSetParameter3fv(v3, (float *)&(scene->quad3));
 
 
+
+
 }
 
 void ShaderOneInterface::PerFrameDisable() {

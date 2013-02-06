@@ -12,6 +12,8 @@ using namespace cimg_library;
 Scene *scene;
 
 Scene::Scene() {
+    
+	depthImage = 0;
 
     // create interface between CPU and GPU
     cgi = new CGInterface();
@@ -93,12 +95,29 @@ void Scene::FrameSetup() {
     fb->Set(0xFF7F0000); // clear color buffer
     fb->SetZB(0.0f); // clear z buffer
 
+
+
 }
 
 // render frame
 void Scene::Render() {
 
-
+    if (depthImage) {
+	    for (int v = 0; v < depthImage->h; v++) 
+        {
+		    for (int u = 0; u < depthImage->w; u++) 
+            {
+			    int uv = (depthImage->h-1-v)*depthImage->w+u;
+			    if (depthImage->zb[uv] == 0.0f)
+				    continue;
+			    V3 projP(u, v, depthImage->zb[uv]);
+			    V3 P = diPPC->C+(diPPC->a*u+diPPC->b*v+diPPC->c)/projP[2];
+			    V3 col;
+			    col.SetFromColor(depthImage->Get(u, v));
+			    fb->DrawSegment3D(P, P, col, col, ppc);
+		    }
+        }
+    }
 
     if (hwfb) {
         // ask to redraw HW framebuffer; will get FrameBuffer::draw called (callback), which will call either
@@ -211,7 +230,7 @@ void Scene::FrameSetupHW() {
     // frame setup
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | 
-        GL_DEPTH_BUFFER_BIT);
+    GL_DEPTH_BUFFER_BIT);
 
     // sets HW view, i.e. OpenGL matrices according to our camera, PPC::ppc
     // set intrinsics
@@ -256,6 +275,7 @@ void Scene::RenderGPU() {
 
             eMap->Load(7);
 
+            //Load the floor
             glBindTexture(GL_TEXTURE_2D, tms[2].floorID);
 
             glTexParameterf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
@@ -320,7 +340,37 @@ void Scene::RenderGPU() {
 
 void Scene::RenderDImg() 
 {
-    ppc->PositionAndOrient(tms[0].GetCenter(), (tms[1].GetCenter()- tms[0].GetCenter()).Normalized(), V3(0.0f, 1.0f, 0.0f), * dImgCam);
+    depthImage = new FrameBuffer(0, 0, fb->w, fb->h);
+	for (int uv = 0; uv < fb->w*fb->h; uv++) {
+		depthImage->pix[uv] = fb->pix[uv];
+		depthImage->zb[uv] = fb->zb[uv];
+	}
+	diPPC = new PPC(*ppc);
+
+	// compute AABB of depth image samples [(u, v) image coordinates + depth]
+	int u = depthImage->w/2;
+	int v = depthImage->h/2;
+	int uv = (depthImage->h-1-v)*depthImage->w+u;
+	V3 P(u, v, depthImage->zb[uv]);
+	AABB aabb(P);
+
+	for (int v = 0; v < depthImage->h; v++) {
+		for (int u = 0; u < depthImage->w; u++) {
+			int uv = (depthImage->h-1-v)*depthImage->w+u;
+			if (depthImage->zb[uv] == 0.0f)
+				continue;
+			V3 P(u, v, depthImage->zb[uv]);
+			aabb.AddPoint(P);
+		}
+	}
+
+	cerr << "AABB: " << aabb.corners[0] << endl << aabb.corners[1] << endl;
+	
+	tms[0].enabled = false;
+	Render();
+
+
+   
 
     FrameSetupHW();
 
@@ -364,4 +414,10 @@ FrameBuffer * Scene::openImg(string fileName)
     }
 
     return fb;
+}
+
+void Scene::CaptureDepthImage() {
+
+	
+	
 }
