@@ -101,6 +101,8 @@ bool ShaderOneInterface::PerSessionInit(CGInterface *cgi) {
     v2 = cgGetNamedParameter(fragmentProgram, "quad2");
     v3 = cgGetNamedParameter(fragmentProgram, "quad3");
 
+    fPoints = cgGetNamedParameter(fragmentProgram, "fPoints");
+
 
 
     return true;
@@ -138,6 +140,8 @@ void ShaderOneInterface::PerFrameInit() {
     cgGLSetParameter3fv(v1, (float *)&(scene->quad1));
     cgGLSetParameter3fv(v2, (float *)&(scene->quad2));
     cgGLSetParameter3fv(v3, (float *)&(scene->quad3));
+
+    cgGLSetParameterArray3f(fPoints, 0, 8, (float *)scene->tms[3].verts);
 
 
 

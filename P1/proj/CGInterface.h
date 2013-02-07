@@ -45,6 +45,8 @@ class ShaderOneInterface {
 
   CGparameter depthPix;
 
+  CGparameter fPoints;
+
   CGparameter v0;
   CGparameter v1;
   CGparameter v2;

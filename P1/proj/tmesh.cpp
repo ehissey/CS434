@@ -583,7 +583,7 @@ void TMesh::SetFrustum(PPC *dImgCam) {
     trisN = 12;
     tris = new unsigned int[trisN*3];
 
-    dImgCam->zNear = 150;
+    dImgCam->zNear = 1;
     dImgCam->zFar = 255;
 
     V3 VDP = dImgCam->GetVD() * dImgCam->zNear;
