@@ -48,5 +48,7 @@ public:
   void SetFromFB(FrameBuffer *fb, PPC *ppc); // construct triangle mesh from framebuffer (using depth, implicit connectivity)
   void RenderHW(); // render HW (issue geometry, per vertex parameters)
   void SetFloor();
+
+  void SetFrustum(PPC *dImgCam);
 };
 

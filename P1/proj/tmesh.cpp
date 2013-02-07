@@ -576,3 +576,208 @@ void TMesh::RenderHW() {
 
 
 }
+
+void TMesh::SetFrustum(PPC *dImgCam) {
+    vertsN = 8;
+    verts = new V3[vertsN];
+    trisN = 12;
+    tris = new unsigned int[trisN*3];
+
+    dImgCam->zNear = 150;
+    dImgCam->zFar = 255;
+
+    V3 VDP = dImgCam->GetVD() * dImgCam->zNear;
+    V3 VDPP = dImgCam->GetVD() * dImgCam->zFar;
+
+    float wp = 2*(dImgCam->zNear)*tan(dImgCam->hfov/2);
+    float wpp = 2*(dImgCam->zFar)*tan(dImgCam->hfov/2);
+    float hp = (wp*dImgCam->h)/dImgCam->w;
+    float hpp = (wpp*dImgCam->h)/dImgCam->w;
+
+    //V3 near0, near1, near2, near3;
+    //V3 far0, far1, far2, far3;
+    
+    verts[0] = dImgCam->C + VDP - (dImgCam->a * (wp/2.0f) + dImgCam->b * (hp/2.0f));
+    verts[1]= verts[0] + dImgCam->b * hp;
+    verts[2] = verts[1] + dImgCam->a * wp;
+    verts[3] = verts[0] + dImgCam->a * wp;
+
+    verts[4] = dImgCam->C + VDPP - (dImgCam->a * (wpp/2.0f) + dImgCam->b * (hpp/2.0f));
+    verts[5] = verts[4] + dImgCam->b * hpp;
+    verts[6] = verts[5] + dImgCam->a * wpp;
+    verts[7] = verts[4] + dImgCam->a * wpp;
+    
+    int tri = 0;
+    tris[3*tri+0] = 0;
+    tris[3*tri+1] = 1;
+    tris[3*tri+2] = 2;
+    tri++;
+    tris[3*tri+0] = 2;
+    tris[3*tri+1] = 3;
+    tris[3*tri+2] = 0;
+    tri++;
+
+    tris[3*tri+0] = 4;
+    tris[3*tri+1] = 7;
+    tris[3*tri+2] = 6;
+    tri++;
+    tris[3*tri+0] = 6;
+    tris[3*tri+1] = 5;
+    tris[3*tri+2] = 4;
+    tri++;
+
+    tris[3*tri+0] = 5;
+    tris[3*tri+1] = 1;
+    tris[3*tri+2] = 0;
+    tri++;
+    tris[3*tri+0] = 0;
+    tris[3*tri+1] = 4;
+    tris[3*tri+2] = 5;
+    tri++;
+
+    tris[3*tri+0] = 1;
+    tris[3*tri+1] = 5;
+    tris[3*tri+2] = 6;
+    tri++;
+    tris[3*tri+0] = 6;
+    tris[3*tri+1] = 2;
+    tris[3*tri+2] = 1;
+    tri++;
+
+    tris[3*tri+0] = 6;
+    tris[3*tri+1] = 7;
+    tris[3*tri+2] = 3;
+    tri++;
+    tris[3*tri+0] = 3;
+    tris[3*tri+1] = 2;
+    tris[3*tri+2] = 6;
+    tri++;
+
+    tris[3*tri+0] = 4;
+    tris[3*tri+1] = 0;
+    tris[3*tri+2] = 3;
+    tri++;
+    tris[3*tri+0] = 3;
+    tris[3*tri+1] = 7;
+    tris[3*tri+2] = 4;
+    tri++;
+
+    cols = new V3[vertsN];
+    for (int i = 0; i < 4; i++) 
+    {
+        cols[i] = V3(1.0f, 0.0f, 0.0f);
+        cols[4+i] = V3(0.0f, 0.0f, 0.0f);
+
+    }
+
+  /*vertsN = 8;
+  verts = new V3[vertsN];
+  trisN = 12;
+  tris = new unsigned int[trisN*3];
+
+  float u, v, w;
+  u = aabb.corners[0][0];
+  v = aabb.corners[0][1];
+  w = 1.0f / aabb.corners[0][2];
+  verts[0] = ppc->C + (ppc->a*u+ppc->b*v+ppc->c)*w;
+
+  u = aabb.corners[0][0];
+  v = aabb.corners[1][1];
+  w = 1.0f / aabb.corners[0][2];
+  verts[1] = ppc->C + (ppc->a*u+ppc->b*v+ppc->c)*w;
+
+  u = aabb.corners[1][0];
+  v = aabb.corners[1][1];
+  w = 1.0f / aabb.corners[0][2];
+  verts[2] = ppc->C + (ppc->a*u+ppc->b*v+ppc->c)*w;
+
+  u = aabb.corners[1][0];
+  v = aabb.corners[0][1];
+  w = 1.0f / aabb.corners[0][2];
+  verts[3] = ppc->C + (ppc->a*u+ppc->b*v+ppc->c)*w;
+
+  u = aabb.corners[0][0];
+  v = aabb.corners[0][1];
+  w = 1.0f / aabb.corners[1][2];
+  verts[4] = ppc->C + (ppc->a*u+ppc->b*v+ppc->c)*w;
+
+  u = aabb.corners[0][0];
+  v = aabb.corners[1][1];
+  w = 1.0f / aabb.corners[1][2];
+  verts[5] = ppc->C + (ppc->a*u+ppc->b*v+ppc->c)*w;
+
+  u = aabb.corners[1][0];
+  v = aabb.corners[1][1];
+  w = 1.0f / aabb.corners[1][2];
+  verts[6] = ppc->C + (ppc->a*u+ppc->b*v+ppc->c)*w;
+
+  u = aabb.corners[1][0];
+  v = aabb.corners[0][1];
+  w = 1.0f / aabb.corners[1][2];
+  verts[7] = ppc->C + (ppc->a*u+ppc->b*v+ppc->c)*w;
+
+
+  int tri = 0;
+  tris[3*tri+0] = 0;
+  tris[3*tri+1] = 1;
+  tris[3*tri+2] = 2;
+  tri++;
+  tris[3*tri+0] = 2;
+  tris[3*tri+1] = 3;
+  tris[3*tri+2] = 0;
+  tri++;
+
+  tris[3*tri+0] = 4;
+  tris[3*tri+1] = 7;
+  tris[3*tri+2] = 6;
+  tri++;
+  tris[3*tri+0] = 6;
+  tris[3*tri+1] = 5;
+  tris[3*tri+2] = 4;
+  tri++;
+
+  tris[3*tri+0] = 5;
+  tris[3*tri+1] = 1;
+  tris[3*tri+2] = 0;
+  tri++;
+  tris[3*tri+0] = 0;
+  tris[3*tri+1] = 4;
+  tris[3*tri+2] = 5;
+  tri++;
+
+  tris[3*tri+0] = 1;
+  tris[3*tri+1] = 5;
+  tris[3*tri+2] = 6;
+  tri++;
+  tris[3*tri+0] = 6;
+  tris[3*tri+1] = 2;
+  tris[3*tri+2] = 1;
+  tri++;
+
+  tris[3*tri+0] = 6;
+  tris[3*tri+1] = 7;
+  tris[3*tri+2] = 3;
+  tri++;
+  tris[3*tri+0] = 3;
+  tris[3*tri+1] = 2;
+  tris[3*tri+2] = 6;
+  tri++;
+
+  tris[3*tri+0] = 4;
+  tris[3*tri+1] = 0;
+  tris[3*tri+2] = 3;
+  tri++;
+  tris[3*tri+0] = 3;
+  tris[3*tri+1] = 7;
+  tris[3*tri+2] = 4;
+  tri++;
+
+  cols = new V3[vertsN];
+
+  for (int i = 0; i < 4; i++) 
+  {
+    cols[i] = V3(1.0f, 0.0f, 0.0f);
+    cols[4+i] = V3(0.0f, 0.0f, 0.0f);
+  }
+  */
+}

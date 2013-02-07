@@ -19,6 +19,9 @@ public:
     CGInterface *cgi;
     ShaderOneInterface *soi;
 
+    int depthID;
+    int hasMovedCamera;
+
     PPC *ppc; // camera used to render current frame
     PPC * dImgCam; //camera used to move ppc
     TMesh *tms; // geometry
@@ -40,7 +43,7 @@ public:
     void Render(); // SW & HW
     void RenderHW(); // Fixed pipeline
     void RenderGPU(); // Programmable pipeline
-    void FrameSetupHW(); // clearing buffers and setting view for HW rendering
+    void FrameSetupHW(PPC * cam); // clearing buffers and setting view for HW rendering
 
     void FrameSetup(); // clearing buffers for SW rendering
 

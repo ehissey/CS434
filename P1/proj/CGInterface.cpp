@@ -93,6 +93,8 @@ bool ShaderOneInterface::PerSessionInit(CGInterface *cgi) {
     renderingFloor =cgGetNamedParameter(fragmentProgram, "floorRendering");
     cMapPix = cgGetNamedParameter(fragmentProgram, "cMap");
     floorPix = cgGetNamedParameter(fragmentProgram, "floor");
+    depthPix = cgGetNamedParameter(fragmentProgram, "depth");
+
 
     v0 = cgGetNamedParameter(fragmentProgram, "quad0");
     v1 = cgGetNamedParameter(fragmentProgram, "quad1");
@@ -125,7 +127,9 @@ void ShaderOneInterface::PerFrameInit() {
     cgGLSetTextureParameter(floorPix, scene->tms[2].floorID);
     cgGLEnableTextureParameter(floorPix);
     
-    
+    cgGLSetTextureParameter(depthPix, scene->depthID);
+    cgGLEnableTextureParameter(depthPix);
+
     cgGLSetParameter1f(renderingBG, scene->isRenderingBG);
 
     cgGLSetParameter1f(renderingFloor, scene->isRenderingFloor);

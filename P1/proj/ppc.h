@@ -12,6 +12,7 @@ public:
   V3 a, b, c, C; // pixel width vector, pixel height vector, vector from eye to top left corner of image, and eye
   int w, h; // camera resolution
   float zNear, zFar; // near and far planes
+  float hfov; //horizonal field of view
   M33 pMat; // projection matrix, computed only when the camera changes, and not for every projection
   void SetPMat();
   PPC() {};

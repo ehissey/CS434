@@ -5,6 +5,7 @@
 #include "CImg.h"
 #include "v3.h"
 #include <iostream>
+#include<math.h>
 
 using namespace std;
 using namespace cimg_library;
@@ -12,8 +13,8 @@ using namespace cimg_library;
 Scene *scene;
 
 Scene::Scene() {
-    
-	depthImage = 0;
+
+
 
     // create interface between CPU and GPU
     cgi = new CGInterface();
@@ -23,18 +24,25 @@ Scene::Scene() {
     gui = new GUI();
     gui->show();
 
+    hasMovedCamera = 0;
+
     // create SW framebuffer
     int u0 = 20;
     int v0 = 50;
     int sci = 2;
     int w = sci*240;
     int h = sci*180;
+
+
     fb = new FrameBuffer(u0, v0, w, h);
+    depthImage = new FrameBuffer(0, 0, fb->w, fb->h);
+    depthID = 77;
+
     fb->label("SW Framebuffer");
-    //fb->show();
 
     // create HW framebuffer
     hwfb = new FrameBuffer(u0+fb->w+20, v0, w, h);
+
     hwfb->label("HW Framebuffer");
     hwfb->isHW = true;
     hwfb->show();
@@ -49,7 +57,7 @@ Scene::Scene() {
 
     obtainedDImg = 0;
     // load, scale and position geometry, i.e. triangle meshes
-    tmsN = 3;
+    tmsN = 4;
     tms = new TMesh[tmsN];
     V3 center(0.0f, 0.0f, -175.0f);
     V3 side(200.0f, 0.0f, -175.0f);
@@ -57,7 +65,9 @@ Scene::Scene() {
     tms[1].Load("geometry/bunny.bin");
 
     AABB aabb = tms[0].GetAABB();
+
     float size0 = (aabb.corners[1]-aabb.corners[0]).Length();
+
     V3 tcenter = tms[0].GetCenter();
     tms[0].Translate(tcenter*-1.0f+center);
     tms[1].Translate(tcenter*-1.0f+side);
@@ -102,22 +112,7 @@ void Scene::FrameSetup() {
 // render frame
 void Scene::Render() {
 
-    if (depthImage) {
-	    for (int v = 0; v < depthImage->h; v++) 
-        {
-		    for (int u = 0; u < depthImage->w; u++) 
-            {
-			    int uv = (depthImage->h-1-v)*depthImage->w+u;
-			    if (depthImage->zb[uv] == 0.0f)
-				    continue;
-			    V3 projP(u, v, depthImage->zb[uv]);
-			    V3 P = diPPC->C+(diPPC->a*u+diPPC->b*v+diPPC->c)/projP[2];
-			    V3 col;
-			    col.SetFromColor(depthImage->Get(u, v));
-			    fb->DrawSegment3D(P, P, col, col, ppc);
-		    }
-        }
-    }
+
 
     if (hwfb) {
         // ask to redraw HW framebuffer; will get FrameBuffer::draw called (callback), which will call either
@@ -221,7 +216,7 @@ void Scene::GoToView(PPC *nppc) {
 // 2. programmable pipeline, i.e. using GPU shaders, Scene::RenderGPU
 
 // called by Scene::RenderHW and by Scene::RenderGPU, which is itself called by the draw callback of the HW framebuffer
-void Scene::FrameSetupHW() {
+void Scene::FrameSetupHW(PPC * cam) {
 
     // OpenGL setup
     glEnable(GL_DEPTH_TEST);
@@ -230,25 +225,26 @@ void Scene::FrameSetupHW() {
     // frame setup
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | 
-    GL_DEPTH_BUFFER_BIT);
+        GL_DEPTH_BUFFER_BIT);
 
     // sets HW view, i.e. OpenGL matrices according to our camera, PPC::ppc
     // set intrinsics
-    ppc->SetIntrinsicsHW();
+    cam->SetIntrinsicsHW();
     // set extrinsics
-    ppc->SetExtrinsicsHW();
+    cam->SetExtrinsicsHW();
 
 }
 
 
 // fixed HW pipeline
-void Scene::RenderHW() {
+void Scene::RenderHW() 
+{
 
     /// OpenGL frame setup
-    FrameSetupHW();
+    FrameSetupHW(ppc);
 
     // render geometry: issue geometry for rendering
-    for (int tmi = 0; tmi < tmsN; tmi++) {
+    for (int tmi = 0; tmi < 1; tmi++) {
         if (!tms[tmi].enabled)
             continue;
         tms[tmi].RenderHW();
@@ -258,129 +254,203 @@ void Scene::RenderHW() {
 
 
 // gpu HW pipeline
-void Scene::RenderGPU() {
+void Scene::RenderGPU() 
+{
+    if(!hasMovedCamera)
+    {
+        ppc->PositionAndOrient(tms[0].GetCenter(), (tms[1].GetCenter()- tms[0].GetCenter()).Normalized(), V3(0.0f, 1.0f, 0.0f), * dImgCam);
+        hasMovedCamera = 1;
+    }
     if(!obtainedDImg)
     {
         RenderDImg();
     }
-        //dImgCam->PositionAndOrient(tms[0].GetCenter(), (tms[1].GetCenter()- tms[0].GetCenter()).Normalized(), V3(0.0f, 1.0f, 0.0f), * ppc);
 
-        // per session initialization, i.e. once per run
-        if (cgi->needInit) 
-        {
-            cgi->PerSessionInit();
-            soi->PerSessionInit(cgi);
+    // per session initialization, i.e. once per run
+    if (cgi->needInit) 
+    {
+        cgi->PerSessionInit();
+        soi->PerSessionInit(cgi);
 
-            eMap = new EnvMap();
+        eMap = new EnvMap();
 
-            eMap->Load(7);
+        eMap->Load(7);
 
-            //Load the floor
-            glBindTexture(GL_TEXTURE_2D, tms[2].floorID);
+        //Load the floor
+        glBindTexture(GL_TEXTURE_2D, tms[2].floorID);
 
-            glTexParameterf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+        glTexParameterf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
-            glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-            glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-            glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-            glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-            FrameBuffer * floorBuf = openImg("floor/checker.bmp");
+        FrameBuffer * floorBuf = openImg("floor/checker.bmp");
 
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, floorBuf->w, floorBuf->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, floorBuf->pix);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, floorBuf->w, floorBuf->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, floorBuf->pix);
 
-        }
+    }
 
-        FrameSetupHW();
+    FrameSetupHW(ppc);
 
-        if(eMap)
-        {
-            isRenderingBG = 1.0f;
-            soi->PerFrameInit();
-            soi->BindPrograms();
-            cgi->EnableProfiles();
-            ppc->RenderImageFrameGL();
-            cgi->DisableProfiles();
-            isRenderingBG = 0.0f;
-
-
-        }
-
-
-        // per frame parameter setting and enabling shaders
+    if(eMap)
+    {
+        isRenderingBG = 1.0f;
         soi->PerFrameInit();
         soi->BindPrograms();
         cgi->EnableProfiles();
-
-        // issue geometry to be rendered with the shaders enabled above
-        for(int i = 0; i < tmsN; i++)
-        {
-            if(tms[i].shaderIsEnabled)
-            {
-                cgi->EnableProfiles();
-            }
-            else
-            {
-                cgi->DisableProfiles();
-            }
-            tms[i].RenderHW();
-
-        }
-
-        // disable GPU rendering
-        soi->PerFrameDisable();
+        ppc->RenderImageFrameGL();
         cgi->DisableProfiles();
- 
-    
+        isRenderingBG = 0.0f;
 
 
+    }
 
+
+    // per frame parameter setting and enabling shaders
+    soi->PerFrameInit();
+    soi->BindPrograms();
+    cgi->EnableProfiles();
+
+    // issue geometry to be rendered with the shaders enabled above
+    for(int i = 0; i < tmsN; i++)
+    {
+        if(tms[i].shaderIsEnabled)
+        {
+            cgi->EnableProfiles();
+        }
+        else
+        {
+            cgi->DisableProfiles();
+        }
+        tms[i].RenderHW();
+    }
+
+    // disable GPU rendering
+    soi->PerFrameDisable();
+    cgi->DisableProfiles();
 }
 
 void Scene::RenderDImg() 
 {
-    depthImage = new FrameBuffer(0, 0, fb->w, fb->h);
-	for (int uv = 0; uv < fb->w*fb->h; uv++) {
-		depthImage->pix[uv] = fb->pix[uv];
-		depthImage->zb[uv] = fb->zb[uv];
-	}
-	diPPC = new PPC(*ppc);
 
-	// compute AABB of depth image samples [(u, v) image coordinates + depth]
-	int u = depthImage->w/2;
-	int v = depthImage->h/2;
-	int uv = (depthImage->h-1-v)*depthImage->w+u;
-	V3 P(u, v, depthImage->zb[uv]);
-	AABB aabb(P);
-
-	for (int v = 0; v < depthImage->h; v++) {
-		for (int u = 0; u < depthImage->w; u++) {
-			int uv = (depthImage->h-1-v)*depthImage->w+u;
-			if (depthImage->zb[uv] == 0.0f)
-				continue;
-			V3 P(u, v, depthImage->zb[uv]);
-			aabb.AddPoint(P);
-		}
-	}
-
-	cerr << "AABB: " << aabb.corners[0] << endl << aabb.corners[1] << endl;
-	
-	tms[0].enabled = false;
-	Render();
-
-
-   
-
-    FrameSetupHW();
-
-    //obtainedDImg = 1;
 
     
 
+    FrameSetupHW(dImgCam);
+
+   /* dImgCam->zNear = 1;
+    dImgCam->zFar = 10000;
+
+    V3 VDP = dImgCam->GetVD() * dImgCam->zNear;
+    V3 VDPP = dImgCam->GetVD() * dImgCam->zFar;
+
+    float wp = 2*(dImgCam->zNear)*tan(dImgCam->hfov/2);
+    float wpp = 2*(dImgCam->zFar)*tan(dImgCam->hfov/2);
+    float hp = (wp*dImgCam->h)/dImgCam->w;
+    float hpp = (wpp*dImgCam->h)/dImgCam->w;
+
+    //V3 near0, near1, near2, near3;
+    //V3 far0, far1, far2, far3;
+
+    verts[0] = dImgCam->C + VDP - (dImgCam->a * (wp/2) + dImgCam->b * (hp/2));
+    verts[1]= verts[0] + dImgCam->b * hp;
+    verts[2] = verts[1] + dImgCam->b * wp;
+    verts[3] = verts[0] + dImgCam->a * wp;
+
+    verts[4] = dImgCam->C + VDPP - (dImgCam->a * (wpp/2) + dImgCam->b * (hpp/2));
+    verts[5] = verts[4] + dImgCam->b * hpp;
+    verts[6] = verts[5] + dImgCam->b * wpp;
+    verts[7] = verts[4] + dImgCam->a * wpp;
+    
+    int tri = 0;
+    tris[3*tri+0] = 0;
+    tris[3*tri+1] = 1;
+    tris[3*tri+2] = 2;
+    tri++;
+    tris[3*tri+0] = 2;
+    tris[3*tri+1] = 3;
+    tris[3*tri+2] = 0;
+    tri++;
+
+    tris[3*tri+0] = 4;
+    tris[3*tri+1] = 7;
+    tris[3*tri+2] = 6;
+    tri++;
+    tris[3*tri+0] = 6;
+    tris[3*tri+1] = 5;
+    tris[3*tri+2] = 4;
+    tri++;
+
+    tris[3*tri+0] = 5;
+    tris[3*tri+1] = 1;
+    tris[3*tri+2] = 0;
+    tri++;
+    tris[3*tri+0] = 0;
+    tris[3*tri+1] = 4;
+    tris[3*tri+2] = 5;
+    tri++;
+
+    tris[3*tri+0] = 1;
+    tris[3*tri+1] = 5;
+    tris[3*tri+2] = 6;
+    tri++;
+    tris[3*tri+0] = 6;
+    tris[3*tri+1] = 2;
+    tris[3*tri+2] = 1;
+    tri++;
+
+    tris[3*tri+0] = 6;
+    tris[3*tri+1] = 7;
+    tris[3*tri+2] = 3;
+    tri++;
+    tris[3*tri+0] = 3;
+    tris[3*tri+1] = 2;
+    tris[3*tri+2] = 6;
+    tri++;
+
+    tris[3*tri+0] = 4;
+    tris[3*tri+1] = 0;
+    tris[3*tri+2] = 3;
+    tri++;
+    tris[3*tri+0] = 3;
+    tris[3*tri+1] = 7;
+    tris[3*tri+2] = 4;
+    tri++;
+
+    V3 * cols = new V3[vertsN];
+    for (int i = 0; i < 4; i++) 
+    {
+        cols[i] = V3(1.0f, 0.0f, 0.0f);
+        cols[4+i] = V3(0.0f, 0.0f, 0.0f);
+
+    }
+    */
+
+    tms[3].SetFrustum(dImgCam);
+
+    tms[3].renderWF = true;
+
+    tms[3].RenderHW();
     // issue geometry to be rendered with the shaders enabled above
     tms[1].RenderHW();
 
+    glReadPixels(0, 0, depthImage->w, depthImage->h, GL_RGBA, GL_UNSIGNED_BYTE, depthImage->pix);
+    glReadPixels(0, 0, depthImage->w, depthImage->h, GL_DEPTH_COMPONENT, GL_FLOAT, depthImage->zb);
+
+    glBindTexture(GL_TEXTURE_2D, depthID);
+
+    glTexParameterf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, depthImage->w, depthImage->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, depthImage->pix);
 
 
 }
@@ -418,6 +488,6 @@ FrameBuffer * Scene::openImg(string fileName)
 
 void Scene::CaptureDepthImage() {
 
-	
-	
+
+
 }

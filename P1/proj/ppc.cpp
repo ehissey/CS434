@@ -6,11 +6,12 @@
 #include <math.h>
 #include <fstream>
 
-PPC::PPC(float hfov, int _w, int _h) : w(_w), h(_h) {
+PPC::PPC(float fov, int _w, int _h) : w(_w), h(_h) {
 
   C = V3(0.0f, 0.0f, 0.0f);
   a = V3(1.0f, 0.0f, 0.0f);
   b = V3(0.0f, -1.0f, 0.0f);
+  hfov = fov;
   float hfovRAD = hfov / 180.0f * 3.1415926f;
   c = V3(-((float)w)/2.0f, ((float)h)/2.0f, -(float)w/(2*tanf(hfovRAD/2.0f)));
   SetPMat();
