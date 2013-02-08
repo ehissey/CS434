@@ -39,6 +39,79 @@ TRIANGLE void GeometryMain(AttribArray<VertexDataOutput> tverts,
 
 }
 
+float quickCross(float2 v, float2 w)
+{
+    return v.x*w.y - v.y*w.x;
+}
+
+bool getDIColor(float3 nPoint, float3 fPoint, float4x4 diProjMatrix, 
+                sampler2D depth, sampler2D depthZ, out float4 bunCol)
+{
+    
+
+    float4 n4 = mul(diProjMatrix, float4(nPoint,1));
+    
+    float4 f4 = mul(diProjMatrix, float4(fPoint,1));
+
+    float3 nPointP = ((n4.xyz / n4.w) + float3(1.0f, 1.0f, 1.0f))/2.0f;
+    float3 fPointP = ((f4.xyz / f4.w) + float3(1.0f, 1.0f, 1.0f))/2.0f;
+    
+    nPointP = clamp(nPointP, float3(0.0f, 0.0f, 0.0f), float3(1.0f, 1.0f, 1.0f));
+    fPointP = clamp(fPointP, float3(0.0f, 0.0f, 0.0f), float3(1.0f, 1.0f, 1.0f));
+
+    int stepsN = 8; //= max(ceil(abs(nPoint.x - fPoint.x)), ceil(abs(nPoint.y - fPoint.y)));
+
+    float3 s0 = nPointP;
+    float z0 = nPointP.z;
+
+    float2 intersectPoint;
+
+    for(int i = 0; i < stepsN; i++)
+    {
+        float3 s1 = (nPointP + (fPointP - nPointP)*(i+1)/stepsN);
+        float z1 = nPointP.z + (fPointP.z - nPointP.z)*(i+1)/stepsN;
+       
+		if(z1 >= 1.0 || z0 >= 1.0)
+			continue;
+
+        //Get Intersection point
+
+        float depthZ1 = tex2D(depthZ, s0);
+
+		
+
+        float depthZ2 = tex2D(depthZ, s1);
+        //z0 = x1, z1 = x2, depthZ1 = x3, depthZ2 = x4
+
+		
+
+        float2 p, r, q, s;
+
+        p = float2(0, z0);
+        r = float2(1, z1) - p;
+        q = float2(0, depthZ1);
+        s = float2(1, depthZ2) - q;
+
+		
+        float t = quickCross((q-p), s/(quickCross(r,s)));
+
+        float u = quickCross((q-p), r/(quickCross(r,s)));
+
+        if(t >= 0 && t <= 1 && u >= 0 && u <= 1)
+        {
+            intersectPoint = p + t*r;
+			bunCol = tex2D(depth, (s0+(s1 - s0)*intersectPoint));
+			return true;
+        }
+
+		s0 = s1;
+
+		z0 = z1;
+    }
+
+	return false;
+}
+
 bool intersectsQuad(float3 interPoint, float t, 
                float3 quad0, float3 quad1, float3 quad2, float3 quad3, float3 quadNorm)
 {
@@ -66,25 +139,27 @@ bool intersectsQuad(float3 interPoint, float t,
         }
 }
 
+
+
+
 bool intersectsFrust(float3 [8] fPoints, float3 reflecVec, float3 curReflecPoint, 
-            out float3 nPoint, out float3 fPoint, int out colCheck)
+            out float3 nPoint, out float3 fPoint)
 {
     float3 quadNorm;
 
     bool hasT1 = false;
     bool hasT2 = false;
-
+        
 
     float t1, t2;
-
     float3 intPoint1, intPoint2;
 
-    float3[6][4]fQuadPoints= {{fPoints[0], fPoints[1], fPoints[2], fPoints[3]},
-                              {fPoints[4], fPoints[5], fPoints[6], fPoints[7]},
-                              {fPoints[3], fPoints[2], fPoints[6], fPoints[7]},
-                              {fPoints[4], fPoints[5], fPoints[1], fPoints[0]},
-                              {fPoints[4], fPoints[0], fPoints[3], fPoints[7]},
-                              {fPoints[1], fPoints[2], fPoints[6], fPoints[5]}};
+    float3[6][4]fQuadPoints = {{fPoints[0], fPoints[1], fPoints[2], fPoints[3]},
+                               {fPoints[4], fPoints[5], fPoints[6], fPoints[7]},
+                               {fPoints[3], fPoints[2], fPoints[6], fPoints[7]},
+                               {fPoints[4], fPoints[5], fPoints[1], fPoints[0]},
+                               {fPoints[4], fPoints[0], fPoints[3], fPoints[7]},
+                               {fPoints[1], fPoints[2], fPoints[6], fPoints[5]}};
 
     
                
@@ -93,7 +168,8 @@ bool intersectsFrust(float3 [8] fPoints, float3 reflecVec, float3 curReflecPoint
         quadNorm = normalize(cross(fQuadPoints[i][0] - fQuadPoints[i][1], 
                                    fQuadPoints[i][2] - fQuadPoints[i][1]));
         
-        float t = dot(quadNorm, fQuadPoints[i][1] - curReflecPoint) / dot(quadNorm, reflecVec);
+        float t = dot(quadNorm, fQuadPoints[i][1] - curReflecPoint) 
+                  / dot(quadNorm, reflecVec);
 
         float3 interPoint = curReflecPoint + reflecVec * t;  
 
@@ -107,7 +183,7 @@ bool intersectsFrust(float3 [8] fPoints, float3 reflecVec, float3 curReflecPoint
                 t1 = t;
                 hasT1 = true;
                 intPoint1 = interPoint;
-                colCheck = i;
+               // colCheck = i;
             }
             else
             {
@@ -115,7 +191,7 @@ bool intersectsFrust(float3 [8] fPoints, float3 reflecVec, float3 curReflecPoint
                 hasT2 = true;
                 intPoint2 = interPoint;
 
-                colCheck = i;
+              //  colCheck = i;
             }
         }
     }
@@ -144,6 +220,8 @@ bool intersectsFrust(float3 [8] fPoints, float3 reflecVec, float3 curReflecPoint
 
 
 
+
+
 PixelDataOutput FragmentMain(
     VertexDataOutput pdi, 
 	uniform float3 eyeCam, 
@@ -152,11 +230,14 @@ PixelDataOutput FragmentMain(
     uniform float floorRendering,
     uniform sampler2D floor, 
     uniform sampler2D depth,
+    uniform sampler2D depthZ,
     uniform float3 quad0,
     uniform float3 quad1, 
     uniform float3 quad2, 
     uniform float3 quad3,
-    uniform float3 fPoints[8]) 
+    uniform float3 fPoints[8],
+    uniform float4x4 diProjMatrix
+    ) 
     {
 
     
@@ -183,8 +264,16 @@ PixelDataOutput FragmentMain(
         //Remove after color checking
         int colCheck;
 
-        if(intersectsFrust(fPoints, reflecVec, curReflecPoint, nPoint, fPoint, colCheck))
+        if(intersectsFrust(fPoints, reflecVec, curReflecPoint, nPoint, fPoint))
         {
+
+            float4 bunnyColor;
+
+            if(getDIColor(nPoint, fPoint, diProjMatrix, depth, depthZ, bunnyColor))
+            {
+                returnColor.color = bunnyColor;
+                return returnColor;   
+            }
             //START PROJECTION ON DEPTH IMAGE AND FIND VALUE
             /*
                   {{fPoints[0], fPoints[1], fPoints[2], fPoints[3]},
@@ -194,7 +283,7 @@ PixelDataOutput FragmentMain(
                    {fPoints[4], fPoints[0], fPoints[3], fPoints[7]},
                    {fPoints[1], fPoints[2], fPoints[6], fPoints[5]}};
             */
-            if(colCheck == 0)
+            /*if(colCheck == 0)
             {
                 //Red NEAR
                 returnColor.color = float4(1.0f, 0.0f, 0.0f, 1.0f);
@@ -223,9 +312,9 @@ PixelDataOutput FragmentMain(
             {
                 //Pink BOTTOM
                 returnColor.color = float4(1.0f, 0.0f, 1.0f, 1.0f);
-            }
+            }*/
         }
-        else if(intersectsQuad(interPoint, t, quad0, quad1, quad2, quad3, quadNorm))
+        if(intersectsQuad(interPoint, t, quad0, quad1, quad2, quad3, quadNorm))
         {
             float2 quadTexCoords = float2((interPoint.x - quad1.x)/(quad2.x-quad1.x), (interPoint.z - quad3.z)/(quad2.z-quad3.z)) * 10.0f;
             returnColor.color = tex2D(floor, quadTexCoords);  
@@ -242,7 +331,3 @@ PixelDataOutput FragmentMain(
 
     return returnColor;
 }
-
-
-
-

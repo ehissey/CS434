@@ -290,6 +290,8 @@ V3 TMesh::GetCenter() {
 
 }
 
+
+
 void TMesh::Load(char *fname) {
 
     ifstream ifs(fname, ios::binary);
@@ -357,9 +359,15 @@ void TMesh::Load(char *fname) {
     cerr << "INFO: loaded " << vertsN << " verts, " << trisN << " tris from " << endl << "      " << fname << endl;
     cerr << "      xyz " << ((cols) ? "rgb " : "") << ((normals) ? "nxnynz " : "") << ((tcs) ? "tcstct " : "") << endl;
 
+    float ka = 0.3f;
+	for (int vi = 0; vi < vertsN; vi++) {
+		float kd = normals[vi]*V3(0.0f, 0.0f, 1.0f);
+		kd = (kd < 0.0f) ? 0.0f : kd;
+		cols[vi] = cols[vi]*(ka+kd*(1.0f-ka));
+	}
     for(int i = 0; i < vertsN; i++)
     {
-        cols[i] = V3(0.0f, 1.0f, 0.75f); 
+        cols[i] = cols[i] - V3(1,1,1) + V3(0.0f, 1.0f, 0.75f); 
     }
 
 }
@@ -582,9 +590,8 @@ void TMesh::SetFrustum(PPC *dImgCam) {
     verts = new V3[vertsN];
     trisN = 12;
     tris = new unsigned int[trisN*3];
-
-    dImgCam->zNear = 1;
-    dImgCam->zFar = 255;
+    
+    
 
     V3 VDP = dImgCam->GetVD() * dImgCam->zNear;
     V3 VDPP = dImgCam->GetVD() * dImgCam->zFar;

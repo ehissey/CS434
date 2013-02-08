@@ -19,7 +19,7 @@ public:
     CGInterface *cgi;
     ShaderOneInterface *soi;
 
-    int depthID;
+    int depthID, depthZ;
     int hasMovedCamera;
 
     PPC *ppc; // camera used to render current frame
@@ -53,6 +53,9 @@ public:
     void SaveView1();
     void LoadView1();
     void GoToView1();
+    void SaveView2();
+    void LoadView2();
+    void GoToView2();
     void GoToView(PPC *nppc);
     static FrameBuffer * openImg(string filename);
     void RenderDImg();

@@ -2,14 +2,14 @@
 version 1.0108 
 header_name {.h} 
 code_name {.cxx}
-class GUI {open selected
+class GUI {open
 } {
   decl {\#include "scene.h"} {}
   Function {GUI()} {open
   } {
     Fl_Window uiw {
       label GUI open
-      xywh {675 144 265 290} type Double visible
+      xywh {675 144 375 430} type Double visible
     } {
       Fl_Button {} {
         label DBG
@@ -46,34 +46,70 @@ class GUI {open selected
         callback {GoToView1B_cb()}
         xywh {140 155 95 40}
       }
+      Fl_Button {} {
+        label {Save View 2}
+        callback {SaveView2B_cb()}
+        xywh {15 205 95 40}
+      }
+      Fl_Button {} {
+        label {Load View 2}
+        callback {LoadView2B_cb()}
+        xywh {15 250 95 40}
+      }
+      Fl_Button {} {
+        label {Go To View 2}
+        callback {GoToView2B_cb()}
+        xywh {15 295 95 40}
+      }
     }
   }
   Function {} {open
   } {
     code {scene = new Scene;} {}
   }
-  Function {show()} {} {
+  Function {show()} {open
+  } {
     code {uiw->show();} {}
   }
-  Function {DBG_cb()} {} {
+  Function {DBG_cb()} {open
+  } {
     code {scene->DBG();} {}
   }
-  Function {SaveView0B_cb()} {} {
+  Function {SaveView0B_cb()} {open
+  } {
     code {scene->SaveView0();} {}
   }
-  Function {LoadView0B_cb()} {} {
+  Function {LoadView0B_cb()} {open
+  } {
     code {scene->LoadView0();} {}
   }
-  Function {GoToView0B_cb()} {} {
+  Function {GoToView0B_cb()} {open
+  } {
     code {scene->GoToView0();} {}
   }
-  Function {SaveView1B_cb()} {} {
+  Function {SaveView1B_cb()} {open
+  } {
     code {scene->SaveView1();} {}
   }
-  Function {LoadView1B_cb()} {} {
+  Function {LoadView1B_cb()} {open
+  } {
     code {scene->LoadView1();} {}
   }
-  Function {GoToView1B_cb()} {} {
+  Function {GoToView1B_cb()} {open
+  } {
     code {scene->GoToView1();} {}
+  }
+  Function {SaveView2B_cb()} {open
+  } {
+    code {scene->SaveView2();} {selected
+    }
+  }
+  Function {LoadView2B_cb()} {open
+  } {
+    code {scene->LoadView2();} {}
+  }
+  Function {GoToView2B_cb()} {open
+  } {
+    code {scene->GoToView2();} {}
   }
 } 

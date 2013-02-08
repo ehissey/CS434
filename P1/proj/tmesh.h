@@ -29,7 +29,7 @@ public:
   int floorIsTextured;
   
   TMesh() : enabled(true), msi(true), verts(0), vertsN(0), 
-    floorID(100), floorIsTextured(0), tris(0), trisN(0), 
+    floorID(120), floorIsTextured(0), tris(0), trisN(0), 
     cols(0), tcs(0), tmap(0), renderWF(false), normals(0), shaderIsEnabled(0), 
     isReflective(false) {};
 

@@ -42,10 +42,13 @@ class ShaderOneInterface {
   CGparameter renderingFloor;
   CGparameter cMapPix;
   CGparameter floorPix;
+  CGparameter depthZ;
 
   CGparameter depthPix;
 
   CGparameter fPoints;
+
+  CGparameter diProjMatrix;
 
   CGparameter v0;
   CGparameter v1;

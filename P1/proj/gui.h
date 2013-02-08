@@ -25,6 +25,12 @@ private:
   static void cb_Load1(Fl_Button*, void*);
   void cb_Go1_i(Fl_Button*, void*);
   static void cb_Go1(Fl_Button*, void*);
+  void cb_Save2_i(Fl_Button*, void*);
+  static void cb_Save2(Fl_Button*, void*);
+  void cb_Load2_i(Fl_Button*, void*);
+  static void cb_Load2(Fl_Button*, void*);
+  void cb_Go2_i(Fl_Button*, void*);
+  static void cb_Go2(Fl_Button*, void*);
 public:
   void show();
   void DBG_cb();
@@ -34,5 +40,8 @@ public:
   void SaveView1B_cb();
   void LoadView1B_cb();
   void GoToView1B_cb();
+  void SaveView2B_cb();
+  void LoadView2B_cb();
+  void GoToView2B_cb();
 };
 #endif

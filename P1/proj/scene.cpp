@@ -30,8 +30,9 @@ Scene::Scene() {
     int u0 = 20;
     int v0 = 50;
     int sci = 2;
-    int w = sci*240;
-    int h = sci*180;
+    int w = sci*640;
+    int h = sci*360;
+
 
 
     fb = new FrameBuffer(u0, v0, w, h);
@@ -48,7 +49,7 @@ Scene::Scene() {
     hwfb->show();
 
     // position UI window
-    gui->uiw->position(2*fb->w+u0 + 2*20, v0);
+    gui->uiw->position(0, v0);
 
     // create camera for rendering scene
     float hfov = 45.0f;
@@ -59,27 +60,37 @@ Scene::Scene() {
     // load, scale and position geometry, i.e. triangle meshes
     tmsN = 4;
     tms = new TMesh[tmsN];
+
     V3 center(0.0f, 0.0f, -175.0f);
-    V3 side(200.0f, 0.0f, -175.0f);
-    tms[0].Load("geometry/bunny.bin");
+    V3 side(50.0f, 0.0f, -175.0f);
+    
     tms[1].Load("geometry/bunny.bin");
+    tms[0].Load("geometry/bunny.bin");
 
-    AABB aabb = tms[0].GetAABB();
+    tms[0].RotateAboutArbitraryAxis(V3(0,0,0) ,V3(0,1,0), 90); 
+    AABB aabb0 = tms[0].GetAABB();
 
-    float size0 = (aabb.corners[1]-aabb.corners[0]).Length();
+    float size0 = (aabb0.corners[1]-aabb0.corners[0]).Length();
 
-    V3 tcenter = tms[0].GetCenter();
-    tms[0].Translate(tcenter*-1.0f+center);
-    tms[1].Translate(tcenter*-1.0f+side);
+    AABB aabb1 = tms[1].GetAABB();
+
+    float size1 = (aabb1.corners[1]-aabb1.corners[0]).Length();
+
+    V3 tcenter0 = tms[0].GetCenter();
+    V3 tcenter1 = tms[1].GetCenter();
+    tms[0].Translate(tcenter0*-1.0f+center);
+    tms[1].Translate(tcenter1*-1.0f+side);
 
     dImgCam = new PPC(hfov, w, h);
+    
+    dImgCam->zNear = 1.0f;
+    dImgCam->zFar = 10000.0f;
 
-
-    float size1 = 170.0f;
-    tms[0].ScaleAboutCenter(size1/size0);
+    float sizex = 170.0f;
+    tms[0].ScaleAboutCenter(sizex/size0);
     tms[0].renderWF = false;
     tms[0].shaderIsEnabled = 1;
-    tms[1].ScaleAboutCenter(size1/size0);
+    tms[1].ScaleAboutCenter(sizex/size1);
     tms[1].renderWF = false;
     tms[1].shaderIsEnabled = 0;
     tms[2].SetFloor();
@@ -93,6 +104,8 @@ Scene::Scene() {
     quad2 = V3(floorTM.wf/2, floorTM.down, floorTM.hf/2);
     quad3 = V3(floorTM.wf/2, floorTM.down, -floorTM.hf/2);
 
+    //LoadView1();
+
     // render scene
     Render();
 
@@ -104,17 +117,13 @@ void Scene::FrameSetup() {
 
     fb->Set(0xFF7F0000); // clear color buffer
     fb->SetZB(0.0f); // clear z buffer
-
-
-
 }
 
 // render frame
-void Scene::Render() {
-
-
-
-    if (hwfb) {
+void Scene::Render() 
+{
+    if (hwfb) 
+    {
         // ask to redraw HW framebuffer; will get FrameBuffer::draw called (callback), which will call either
         //        Scene::RenderHW for fixed pipeline HW rendering, or Scene::RenderGPU for GPU HW rendering;
         //        this is needed since with FLTK one can only make GL calls from FrameBuffer::draw
@@ -193,6 +202,26 @@ void Scene::GoToView1() {
 
 }
 
+void Scene::SaveView2() {
+
+    ppc->Save("mydbg/view2.txt");
+
+}
+
+void Scene::LoadView2() {
+
+    ppc->Load("mydbg/view2.txt");
+    Render();
+
+}
+
+void Scene::GoToView2() {
+
+    PPC nppc;
+    nppc.Load("mydbg/view2.txt");
+    GoToView(&nppc);
+
+}
 
 void Scene::GoToView(PPC *nppc) {
 
@@ -258,7 +287,7 @@ void Scene::RenderGPU()
 {
     if(!hasMovedCamera)
     {
-        ppc->PositionAndOrient(tms[0].GetCenter(), (tms[1].GetCenter()- tms[0].GetCenter()).Normalized(), V3(0.0f, 1.0f, 0.0f), * dImgCam);
+        ppc->PositionAndOrient(tms[0].GetCenter() - V3(100,0,0), (tms[1].GetCenter()- tms[0].GetCenter()).Normalized(), V3(0.0f, 1.0f, 0.0f), * dImgCam);
         hasMovedCamera = 1;
     }
     if(!obtainedDImg)
@@ -341,105 +370,17 @@ void Scene::RenderDImg()
 
     FrameSetupHW(dImgCam);
 
-   /* dImgCam->zNear = 1;
-    dImgCam->zFar = 10000;
-
-    V3 VDP = dImgCam->GetVD() * dImgCam->zNear;
-    V3 VDPP = dImgCam->GetVD() * dImgCam->zFar;
-
-    float wp = 2*(dImgCam->zNear)*tan(dImgCam->hfov/2);
-    float wpp = 2*(dImgCam->zFar)*tan(dImgCam->hfov/2);
-    float hp = (wp*dImgCam->h)/dImgCam->w;
-    float hpp = (wpp*dImgCam->h)/dImgCam->w;
-
-    //V3 near0, near1, near2, near3;
-    //V3 far0, far1, far2, far3;
-
-    verts[0] = dImgCam->C + VDP - (dImgCam->a * (wp/2) + dImgCam->b * (hp/2));
-    verts[1]= verts[0] + dImgCam->b * hp;
-    verts[2] = verts[1] + dImgCam->b * wp;
-    verts[3] = verts[0] + dImgCam->a * wp;
-
-    verts[4] = dImgCam->C + VDPP - (dImgCam->a * (wpp/2) + dImgCam->b * (hpp/2));
-    verts[5] = verts[4] + dImgCam->b * hpp;
-    verts[6] = verts[5] + dImgCam->b * wpp;
-    verts[7] = verts[4] + dImgCam->a * wpp;
-    
-    int tri = 0;
-    tris[3*tri+0] = 0;
-    tris[3*tri+1] = 1;
-    tris[3*tri+2] = 2;
-    tri++;
-    tris[3*tri+0] = 2;
-    tris[3*tri+1] = 3;
-    tris[3*tri+2] = 0;
-    tri++;
-
-    tris[3*tri+0] = 4;
-    tris[3*tri+1] = 7;
-    tris[3*tri+2] = 6;
-    tri++;
-    tris[3*tri+0] = 6;
-    tris[3*tri+1] = 5;
-    tris[3*tri+2] = 4;
-    tri++;
-
-    tris[3*tri+0] = 5;
-    tris[3*tri+1] = 1;
-    tris[3*tri+2] = 0;
-    tri++;
-    tris[3*tri+0] = 0;
-    tris[3*tri+1] = 4;
-    tris[3*tri+2] = 5;
-    tri++;
-
-    tris[3*tri+0] = 1;
-    tris[3*tri+1] = 5;
-    tris[3*tri+2] = 6;
-    tri++;
-    tris[3*tri+0] = 6;
-    tris[3*tri+1] = 2;
-    tris[3*tri+2] = 1;
-    tri++;
-
-    tris[3*tri+0] = 6;
-    tris[3*tri+1] = 7;
-    tris[3*tri+2] = 3;
-    tri++;
-    tris[3*tri+0] = 3;
-    tris[3*tri+1] = 2;
-    tris[3*tri+2] = 6;
-    tri++;
-
-    tris[3*tri+0] = 4;
-    tris[3*tri+1] = 0;
-    tris[3*tri+2] = 3;
-    tri++;
-    tris[3*tri+0] = 3;
-    tris[3*tri+1] = 7;
-    tris[3*tri+2] = 4;
-    tri++;
-
-    V3 * cols = new V3[vertsN];
-    for (int i = 0; i < 4; i++) 
-    {
-        cols[i] = V3(1.0f, 0.0f, 0.0f);
-        cols[4+i] = V3(0.0f, 0.0f, 0.0f);
-
-    }
-    */
 
     tms[3].SetFrustum(dImgCam);
 
     tms[3].renderWF = true;
 
-    tms[3].RenderHW();
-    // issue geometry to be rendered with the shaders enabled above
+    //tms[3].RenderHW();
+    //issue geometry to be rendered with the shaders enabled above
     tms[1].RenderHW();
 
     glReadPixels(0, 0, depthImage->w, depthImage->h, GL_RGBA, GL_UNSIGNED_BYTE, depthImage->pix);
-    glReadPixels(0, 0, depthImage->w, depthImage->h, GL_DEPTH_COMPONENT, GL_FLOAT, depthImage->zb);
-
+    
     glBindTexture(GL_TEXTURE_2D, depthID);
 
     glTexParameterf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
@@ -451,6 +392,28 @@ void Scene::RenderDImg()
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, depthImage->w, depthImage->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, depthImage->pix);
+    
+    
+    
+    depthZ = 99;
+
+    //depthImage->show();
+
+    glReadPixels(0, 0, depthImage->w, depthImage->h, GL_DEPTH_COMPONENT, GL_FLOAT, depthImage->zb);
+
+    glBindTexture(GL_TEXTURE_2D, depthZ);
+
+    glTexParameterf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, depthImage->w, depthImage->h, 0, GL_DEPTH_COMPONENT, GL_FLOAT, depthImage->zb);
+    
+    
 
 
 }
@@ -484,10 +447,4 @@ FrameBuffer * Scene::openImg(string fileName)
     }
 
     return fb;
-}
-
-void Scene::CaptureDepthImage() {
-
-
-
 }

@@ -50,10 +50,31 @@ void GUI::cb_Go1_i(Fl_Button*, void*) {
 void GUI::cb_Go1(Fl_Button* o, void* v) {
   ((GUI*)(o->parent()->user_data()))->cb_Go1_i(o,v);
 }
+
+void GUI::cb_Save2_i(Fl_Button*, void*) {
+  SaveView2B_cb();
+}
+void GUI::cb_Save2(Fl_Button* o, void* v) {
+  ((GUI*)(o->parent()->user_data()))->cb_Save2_i(o,v);
+}
+
+void GUI::cb_Load2_i(Fl_Button*, void*) {
+  LoadView2B_cb();
+}
+void GUI::cb_Load2(Fl_Button* o, void* v) {
+  ((GUI*)(o->parent()->user_data()))->cb_Load2_i(o,v);
+}
+
+void GUI::cb_Go2_i(Fl_Button*, void*) {
+  GoToView2B_cb();
+}
+void GUI::cb_Go2(Fl_Button* o, void* v) {
+  ((GUI*)(o->parent()->user_data()))->cb_Go2_i(o,v);
+}
 #include "scene.h"
 
 GUI::GUI() {
-  { uiw = new Fl_Double_Window(265, 290, "GUI");
+  { uiw = new Fl_Double_Window(375, 430, "GUI");
     uiw->user_data((void*)(this));
     { Fl_Button* o = new Fl_Button(15, 15, 225, 40, "DBG");
       o->selection_color(FL_DARK_RED);
@@ -76,6 +97,15 @@ GUI::GUI() {
     } // Fl_Button* o
     { Fl_Button* o = new Fl_Button(140, 155, 95, 40, "Go To View 1");
       o->callback((Fl_Callback*)cb_Go1);
+    } // Fl_Button* o
+    { Fl_Button* o = new Fl_Button(15, 205, 95, 40, "Save View 2");
+      o->callback((Fl_Callback*)cb_Save2);
+    } // Fl_Button* o
+    { Fl_Button* o = new Fl_Button(15, 250, 95, 40, "Load View 2");
+      o->callback((Fl_Callback*)cb_Load2);
+    } // Fl_Button* o
+    { Fl_Button* o = new Fl_Button(15, 295, 95, 40, "Go To View 2");
+      o->callback((Fl_Callback*)cb_Go2);
     } // Fl_Button* o
     uiw->end();
   } // Fl_Double_Window* uiw
@@ -116,4 +146,16 @@ void GUI::LoadView1B_cb() {
 
 void GUI::GoToView1B_cb() {
   scene->GoToView1();
+}
+
+void GUI::SaveView2B_cb() {
+  scene->SaveView2();
+}
+
+void GUI::LoadView2B_cb() {
+  scene->LoadView2();
+}
+
+void GUI::GoToView2B_cb() {
+  scene->GoToView2();
 }

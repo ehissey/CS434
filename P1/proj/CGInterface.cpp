@@ -88,12 +88,15 @@ bool ShaderOneInterface::PerSessionInit(CGInterface *cgi) {
     vertexModelViewProj = cgGetNamedParameter(vertexProgram, "modelViewProj" );
     geometryModelViewProj = cgGetNamedParameter(geometryProgram, "modelViewProj" );
 
+    diProjMatrix = cgGetNamedParameter(fragmentProgram, "diProjMatrix");
+
     eyePix = cgGetNamedParameter(fragmentProgram, "eyeCam");
     renderingBG = cgGetNamedParameter(fragmentProgram, "bgRendering");
     renderingFloor =cgGetNamedParameter(fragmentProgram, "floorRendering");
     cMapPix = cgGetNamedParameter(fragmentProgram, "cMap");
     floorPix = cgGetNamedParameter(fragmentProgram, "floor");
     depthPix = cgGetNamedParameter(fragmentProgram, "depth");
+    depthZ = cgGetNamedParameter(fragmentProgram, "depthZ");
 
 
     v0 = cgGetNamedParameter(fragmentProgram, "quad0");
@@ -122,6 +125,23 @@ void ShaderOneInterface::PerFrameInit() {
         CG_GL_MATRIX_IDENTITY);
 #endif
     cgGLSetParameter3fv(eyePix, (float*)&(scene->ppc->C));
+
+    // set intrinsics
+    scene->dImgCam->SetIntrinsicsHW();
+    // set extrinsics
+    scene->dImgCam->SetExtrinsicsHW();
+
+    //set parameters
+    cgGLSetStateMatrixParameter(diProjMatrix, 
+        CG_GL_MODELVIEW_PROJECTION_MATRIX, 
+        CG_GL_MATRIX_IDENTITY);
+    
+    // set intrinsics
+    scene->ppc->SetIntrinsicsHW();
+    // set extrinsics
+    scene->ppc->SetExtrinsicsHW();
+
+
     
     cgGLSetTextureParameter(cMapPix, scene->eMap->ID);
     cgGLEnableTextureParameter(cMapPix);
@@ -131,6 +151,11 @@ void ShaderOneInterface::PerFrameInit() {
     
     cgGLSetTextureParameter(depthPix, scene->depthID);
     cgGLEnableTextureParameter(depthPix);
+
+    cgGLSetTextureParameter(depthZ, scene->depthZ);
+    cgGLEnableTextureParameter(depthZ);
+
+
 
     cgGLSetParameter1f(renderingBG, scene->isRenderingBG);
 
