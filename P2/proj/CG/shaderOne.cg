@@ -1,0 +1,333 @@
+
+struct VertexDataInput {
+	float4 vertex: POSITION;
+	float3 normal: NORMAL;
+	float3 color: COLOR;
+};
+
+struct VertexDataOutput {
+	float4 projv  : POSITION;
+	float4 color : COLOR;
+	float3 vertex: TEXCOORD0;
+	float3 normal: TEXCOORD1;
+};
+
+struct PixelDataOutput {
+	float4 color : COLOR0;
+};
+
+VertexDataOutput VertexMain(VertexDataInput vdi, 
+  uniform float4x4 modelViewProj) {
+
+  VertexDataOutput ret;
+  ret.projv = mul(modelViewProj, vdi.vertex);
+  ret.color = float4(vdi.color, 1.0f);
+  ret.vertex = vdi.vertex.xyz;
+  ret.normal = vdi.normal;
+
+  return ret;
+
+}
+
+TRIANGLE void GeometryMain(AttribArray<VertexDataOutput> tverts,
+	uniform float4x4 modelViewProj) {
+
+	emitVertex(tverts[0]);
+	emitVertex(tverts[1]);
+	emitVertex(tverts[2]);
+	return;
+
+}
+
+float quickCross(float2 v, float2 w)
+{
+    return v.x*w.y - v.y*w.x;
+}
+
+bool getDIColor(float3 nPoint, float3 fPoint, float4x4 diProjMatrix, 
+                sampler2D depth, sampler2D depthZ, out float4 bunCol)
+{
+    
+
+    float4 n4 = mul(diProjMatrix, float4(nPoint,1));
+    
+    float4 f4 = mul(diProjMatrix, float4(fPoint,1));
+
+    float3 nPointP = ((n4.xyz / n4.w) + float3(1.0f, 1.0f, 1.0f))/2.0f;
+    float3 fPointP = ((f4.xyz / f4.w) + float3(1.0f, 1.0f, 1.0f))/2.0f;
+    
+    nPointP = clamp(nPointP, float3(0.0f, 0.0f, 0.0f), float3(1.0f, 1.0f, 1.0f));
+    fPointP = clamp(fPointP, float3(0.0f, 0.0f, 0.0f), float3(1.0f, 1.0f, 1.0f));
+
+    int stepsN = 8; //= max(ceil(abs(nPoint.x - fPoint.x)), ceil(abs(nPoint.y - fPoint.y)));
+
+    float3 s0 = nPointP;
+    float z0 = nPointP.z;
+
+    float2 intersectPoint;
+
+    for(int i = 0; i < stepsN; i++)
+    {
+        float3 s1 = (nPointP + (fPointP - nPointP)*(i+1)/stepsN);
+        float z1 = nPointP.z + (fPointP.z - nPointP.z)*(i+1)/stepsN;
+       
+		if(z1 >= 1.0 || z0 >= 1.0)
+			continue;
+
+        //Get Intersection point
+
+        float depthZ1 = tex2D(depthZ, s0);
+
+		
+
+        float depthZ2 = tex2D(depthZ, s1);
+        //z0 = x1, z1 = x2, depthZ1 = x3, depthZ2 = x4
+
+		
+
+        float2 p, r, q, s;
+
+        p = float2(0, z0);
+        r = float2(1, z1) - p;
+        q = float2(0, depthZ1);
+        s = float2(1, depthZ2) - q;
+
+		
+        float t = quickCross((q-p), s/(quickCross(r,s)));
+
+        float u = quickCross((q-p), r/(quickCross(r,s)));
+
+        if(t >= 0 && t <= 1 && u >= 0 && u <= 1)
+        {
+            intersectPoint = p + t*r;
+			bunCol = tex2D(depth, (s0+(s1 - s0)*intersectPoint));
+			return true;
+        }
+
+		s0 = s1;
+
+		z0 = z1;
+    }
+
+	return false;
+}
+
+bool intersectsQuad(float3 interPoint, float t, 
+               float3 quad0, float3 quad1, float3 quad2, float3 quad3, float3 quadNorm)
+{
+        float3 inter0 = cross(quad1-quad0, interPoint - quad0);
+        float3 inter1 = cross(quad2-quad1, interPoint - quad1);
+        float3 inter2 = cross(quad3-quad2, interPoint - quad2);
+        float3 inter3 = cross(quad0-quad3, interPoint - quad3);
+
+        float interNorm0 = dot(quadNorm, inter0);
+        float interNorm1 = dot(quadNorm, inter1);
+        float interNorm2 = dot(quadNorm, inter2);
+        float interNorm3 = dot(quadNorm, inter3);
+
+        if((interNorm0 > 0 && interNorm1 > 0 
+            && interNorm2 > 0 && interNorm3 > 0) 
+            ||(interNorm0 < 0 && interNorm1 < 0 
+               && interNorm2 < 0 && interNorm3 < 0) 
+            && t > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+}
+
+
+
+
+bool intersectsFrust(float3 [8] fPoints, float3 reflecVec, float3 curReflecPoint, 
+            out float3 nPoint, out float3 fPoint)
+{
+    float3 quadNorm;
+
+    bool hasT1 = false;
+    bool hasT2 = false;
+        
+
+    float t1, t2;
+    float3 intPoint1, intPoint2;
+
+    float3[6][4]fQuadPoints = {{fPoints[0], fPoints[1], fPoints[2], fPoints[3]},
+                               {fPoints[4], fPoints[5], fPoints[6], fPoints[7]},
+                               {fPoints[3], fPoints[2], fPoints[6], fPoints[7]},
+                               {fPoints[4], fPoints[5], fPoints[1], fPoints[0]},
+                               {fPoints[4], fPoints[0], fPoints[3], fPoints[7]},
+                               {fPoints[1], fPoints[2], fPoints[6], fPoints[5]}};
+
+    
+               
+    for(int i = 0; i < 6; i++)
+    {
+        quadNorm = normalize(cross(fQuadPoints[i][0] - fQuadPoints[i][1], 
+                                   fQuadPoints[i][2] - fQuadPoints[i][1]));
+        
+        float t = dot(quadNorm, fQuadPoints[i][1] - curReflecPoint) 
+                  / dot(quadNorm, reflecVec);
+
+        float3 interPoint = curReflecPoint + reflecVec * t;  
+
+        if(intersectsQuad(interPoint, t, 
+           fQuadPoints[i][0], fQuadPoints[i][1], 
+           fQuadPoints[i][2], fQuadPoints[i][3], 
+           quadNorm))
+        {
+            if(!hasT1)
+            {
+                t1 = t;
+                hasT1 = true;
+                intPoint1 = interPoint;
+               // colCheck = i;
+            }
+            else
+            {
+                t2 = t;
+                hasT2 = true;
+                intPoint2 = interPoint;
+
+              //  colCheck = i;
+            }
+        }
+    }
+
+    if(hasT2)
+    {
+        if(t1 < t2)
+        {
+            nPoint = intPoint1;
+            fPoint = intPoint2;
+        }
+        else
+        {
+            nPoint = intPoint2;
+            fPoint = intPoint1;
+        }
+    }
+    else if(hasT1)
+    {
+        nPoint = curReflecPoint;
+        fPoint = intPoint1;
+    }
+
+    return hasT1;
+}
+
+
+
+
+
+PixelDataOutput FragmentMain(
+    VertexDataOutput pdi, 
+	uniform float3 eyeCam, 
+    uniform samplerCube cMap,
+    uniform float bgRendering, 
+    uniform float floorRendering,
+    uniform sampler2D floor, 
+    uniform sampler2D depth,
+    uniform sampler2D depthZ,
+    uniform float3 quad0,
+    uniform float3 quad1, 
+    uniform float3 quad2, 
+    uniform float3 quad3,
+    uniform float3 fPoints[8],
+    uniform float4x4 diProjMatrix
+    ) 
+    {
+
+    
+    PixelDataOutput returnColor;
+
+    float3 curReflecPoint = pdi.vertex;
+    float3 eyeToPix = normalize(curReflecPoint - eyeCam);
+
+    float3 nPoint, fPoint;
+    
+    
+    if(bgRendering == 0.0f)
+    {
+        float3 pixNorm = normalize(pdi.normal);
+        
+        float3 reflecVec = normalize(eyeToPix - 2 * dot(eyeToPix, pixNorm) * pixNorm);
+    
+        float3 quadNorm = normalize(cross(quad0 - quad1, quad2 - quad1));
+
+        float t = dot(quadNorm, quad1 - curReflecPoint) / dot(quadNorm, reflecVec);
+
+        float3 interPoint = curReflecPoint + reflecVec * t;
+
+        //Remove after color checking
+        int colCheck;
+
+        if(intersectsFrust(fPoints, reflecVec, curReflecPoint, nPoint, fPoint))
+        {
+
+            float4 bunnyColor;
+
+            if(getDIColor(nPoint, fPoint, diProjMatrix, depth, depthZ, bunnyColor))
+            {
+                returnColor.color = bunnyColor;
+                return returnColor;   
+            }
+            //START PROJECTION ON DEPTH IMAGE AND FIND VALUE
+            /*
+                  {{fPoints[0], fPoints[1], fPoints[2], fPoints[3]},
+                   {fPoints[4], fPoints[5], fPoints[6], fPoints[7]},
+                   {fPoints[3], fPoints[2], fPoints[6], fPoints[7]},
+                   {fPoints[4], fPoints[5], fPoints[1], fPoints[0]},
+                   {fPoints[4], fPoints[0], fPoints[3], fPoints[7]},
+                   {fPoints[1], fPoints[2], fPoints[6], fPoints[5]}};
+            */
+            /*if(colCheck == 0)
+            {
+                //Red NEAR
+                returnColor.color = float4(1.0f, 0.0f, 0.0f, 1.0f);
+            }
+            else if(colCheck == 1)
+            {
+                //Green Far
+                returnColor.color = float4(0.0f, 1.0f, 0.0f, 1.0f);
+            }
+            else if(colCheck == 2)
+            {
+                //blue Right side
+                returnColor.color = float4(0.0f, 0.0f, 1.0f, 1.0f);
+            }
+            else if(colCheck == 3)
+            {
+                //Yellow Left sde
+                returnColor.color = float4(1.0f, 1.0f, 0.0f, 1.0f);
+            }
+            else if(colCheck == 4)
+            {
+                //teal TOP
+                returnColor.color = float4(0.0f, 1.0f, 1.0f, 1.0f);
+            }
+            else if(colCheck == 5)
+            {
+                //Pink BOTTOM
+                returnColor.color = float4(1.0f, 0.0f, 1.0f, 1.0f);
+            }*/
+        }
+        if(intersectsQuad(interPoint, t, quad0, quad1, quad2, quad3, quadNorm))
+        {
+            float2 quadTexCoords = float2((interPoint.x - quad1.x)/(quad2.x-quad1.x), (interPoint.z - quad3.z)/(quad2.z-quad3.z)) * 10.0f;
+            returnColor.color = tex2D(floor, quadTexCoords);  
+        }  
+        else
+        { 
+          returnColor.color = texCUBE(cMap, reflecVec);
+        }
+    }
+    else
+    {
+        returnColor.color = texCUBE(cMap, eyeToPix);
+    }
+
+    return returnColor;
+}
