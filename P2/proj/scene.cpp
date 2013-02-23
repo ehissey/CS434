@@ -70,6 +70,8 @@ Scene::Scene()
 
 
 
+
+
     // render scene
     Render();
 
@@ -224,6 +226,11 @@ void Scene::FrameSetupHW(PPC * cam)
 
     // OpenGL setup
     glEnable(GL_DEPTH_TEST);
+
+    glEnable(GL_COLOR_MATERIAL);
+
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
     //  glEnable(GL_CULL_FACE);
 
     // frame setup
@@ -269,6 +276,22 @@ void Scene::RenderGPU()
 
     FrameSetupHW(ppc);
 
+    GLfloat lightPosition[] = {0.0f, 0.0f, 0.0f, 1.0f};
+    GLfloat lightDiffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
+    GLfloat lightDirection[] = {0.0f, 0.0f, -1.0f};
+
+    GLfloat materialColor[] = {0.0f, 0.0f, 0.0f, 1.0f};
+
+    glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+    glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, lightDirection);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDiffuse);
+    glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 1.0f); 
+
+    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, materialColor);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, materialColor);
+    
     // per frame parameter setting and enabling shaders
     //soi->PerFrameInit();
     //soi->BindPrograms();
@@ -291,4 +314,9 @@ void Scene::RenderGPU()
     // disable GPU rendering
     soi->PerFrameDisable();
     cgi->DisableProfiles();
+
+    
+
+
+
 }
