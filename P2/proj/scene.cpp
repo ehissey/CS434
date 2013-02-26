@@ -9,7 +9,6 @@
 
 using namespace std;
 using namespace cimg_library;
-
 Scene *scene;
 
 Scene::Scene() 
@@ -26,23 +25,22 @@ Scene::Scene()
     // create SW framebuffer
     int u0 = 20;
     int v0 = 50;
-    int sci = 2;
-    int w = sci*320;
-    int h = sci*175;
+    int side = 64;
+    w = side;
+    h = side;
 
     fb = new FrameBuffer(u0, v0, w, h);
-
     fb->label("SW Framebuffer");
 
     // create HW framebuffer
-    hwfb = new FrameBuffer(u0+fb->w+20, v0, w, h);
+    hwfb = new FrameBuffer(u0+20, v0, w, h);
 
     hwfb->label("HW Framebuffer");
     hwfb->isHW = true;
     hwfb->show();
 
     // position UI window
-    gui->uiw->position(0, v0);
+    gui->uiw->position(u0+20+hwfb->w+100, v0);
 
     // create camera for rendering scene
     float hfov = 45.0f;
@@ -55,6 +53,11 @@ Scene::Scene()
     V3 center(0.0f, 0.0f, -175.0f);
     
     tms[0].Load("geometry/teapot57k.bin");
+
+    dImgCam = new PPC(hfov, w, h);
+    
+    dImgCam->zNear = 1.0f;
+    dImgCam->zFar = 10000.0f;
  
     AABB aabb0 = tms[0].GetAABB();
 
@@ -66,22 +69,19 @@ Scene::Scene()
     float sizex = 170.0f;
     tms[0].ScaleAboutCenter(sizex/size0);
     tms[0].renderWF = false;
-    tms[0].shaderIsEnabled = 0;
+    tms[0].shaderIsEnabled = 1;
 
-
-
-
+    Render();
+    Fl::check();
 
     // render scene
-    Render();
-
+    
 }
 
 
 // SW per frame setup
 void Scene::FrameSetup() 
 {
-
     fb->Set(0xFF7F0000); // clear color buffer
     fb->SetZB(0.0f); // clear z buffer
 }
@@ -110,21 +110,23 @@ void Scene::Render()
         {
             tms[tmi].RenderWF(ppc, fb); // wireframe
         }
-        else {
+        else 
+        {
             tms[tmi].Render(ppc, fb); // regular filled rendering
         }
     }
 
-
     fb->redraw(); // this calls FrameBuffer::draw wich posts pixels with glDrawPixels;
-
 }
 
 // function linked to the DBG GUI button for testing new features
 void Scene::DBG() 
 {
+   cerr << "INFO: DBG" << endl;
 
-    cerr << "INFO: DBG" << endl;
+   
+    GetTransportMatrix();
+    
 
 }
 
@@ -267,36 +269,57 @@ void Scene::RenderHW()
 // gpu HW pipeline
 void Scene::RenderGPU() 
 {
+
+    
+
     // per session initialization, i.e. once per run
     if (cgi->needInit) 
     {
         cgi->PerSessionInit();
-        //soi->PerSessionInit(cgi);
+        
+        if(tms[0].shaderIsEnabled)
+        {
+            soi->PerSessionInit(cgi);
+        }
     }
+
+
+
+    dImgCam->PositionAndOrient(V3(0,0,0), V3(0,0,-1), V3(0.0f, 1.0f, 0.0f), * dImgCam);
+    
+    FrameSetupHW(dImgCam);
 
     FrameSetupHW(ppc);
 
     GLfloat lightPosition[] = {0.0f, 0.0f, 0.0f, 1.0f};
-    GLfloat lightDiffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
     GLfloat lightDirection[] = {0.0f, 0.0f, -1.0f};
-
+    GLfloat lightDiffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
     GLfloat materialColor[] = {0.0f, 0.0f, 0.0f, 1.0f};
+    GLfloat exp[] = {0.0f};
 
     glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
     glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, lightDirection);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDiffuse);
     glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 1.0f); 
+    glLightfv(GL_LIGHT0, GL_SPOT_EXPONENT, exp);
 
-    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+    glColorMaterial(GL_FRONT_AND_BACK, GL_DIFFUSE);
 
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, materialColor);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, materialColor);
+    //glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, materialColor);
+    //glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, materialColor);
+    //glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, materialColor);
+    //glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, materialColor);
+
+    
+    
     
     // per frame parameter setting and enabling shaders
-    //soi->PerFrameInit();
-    //soi->BindPrograms();
-    //cgi->EnableProfiles();
-
+    if(tms[0].shaderIsEnabled)
+    {
+        soi->PerFrameInit();
+        soi->BindPrograms();
+        cgi->EnableProfiles();
+    }
     // issue geometry to be rendered with the shaders enabled above
     for(int i = 0; i < tmsN; i++)
     {
@@ -314,9 +337,63 @@ void Scene::RenderGPU()
     // disable GPU rendering
     soi->PerFrameDisable();
     cgi->DisableProfiles();
+}
 
+void Scene::GetTransportMatrix()
+{
+    unsigned int ** images = new unsigned int * [w*h];
+    unsigned int *pixels = new unsigned int[w*h];
+
+    cerr << "INFO: STARTING" << endl;
+    u = 0;
+    v = 0;
+    int g = 0;
+
+    for(int i = 0; i < h; i++)
+    {
+        v = i;
+        
+        for(int j = 0; j < w; j++)
+        {
+            u = j;
+            Render();
+            
+
+            Fl::check();
+            glReadPixels(0,0,w,h,GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+
+            
+            
+            for (int k = 0; k < w*h; k++) 
+            {
+                unsigned char *p = (unsigned char *)&pixels[k];
+
+                if (p[1] == 0) 
+                {
+                    cerr << (int)p[0] << " " << (int)p[1] << " " << (int)p[2] << " " << (int)p[3] << endl;
+                }
+            }
+
+            images[g] = new unsigned int[w*h];
+            memcpy(images[g], pixels, w*h * sizeof(unsigned int));
+
+            g++;
+        }
+    }
+
+    cerr << "INFO: DONE!" << endl;
     
+    for (int i = 0; i < w*h; i++) 
+    {
+        for(int j = 0; j < w*h; j++)
+        {
+                unsigned char *p = (unsigned char *)&images[i][j];
+                if (p[1] == 0) 
+                {
+                    cerr << (int)p[0] << " " << (int)p[1] << " " << (int)p[2] << " " << (int)p[3] << endl;
+                }
+        }
+    }
 
-
-
+    cerr << "INFO: DONE AGAIN!" << endl;
 }

@@ -93,6 +93,7 @@
     <ClCompile Include="m33.cpp" />
     <ClCompile Include="ppc.cpp" />
     <ClCompile Include="scene.cpp" />
+    <ClCompile Include="spotlight.cpp" />
     <ClCompile Include="tmesh.cpp" />
     <ClCompile Include="v3.cpp" />
   </ItemGroup>
@@ -104,6 +105,7 @@
     <ClInclude Include="m33.h" />
     <ClInclude Include="ppc.h" />
     <ClInclude Include="scene.h" />
+    <ClInclude Include="spotlight.h" />
     <ClInclude Include="tmesh.h" />
     <ClInclude Include="v3.h" />
   </ItemGroup>

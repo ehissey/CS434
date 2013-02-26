@@ -5,10 +5,7 @@
 #include "framebuffer.h"
 #include "ppc.h"
 #include "tmesh.h"
-
-
 #include "CGInterface.h"
-
 
 class Scene {
 public:
@@ -24,8 +21,9 @@ public:
     int tmsN; // number of triangle meshes
     GUI *gui; // user interface
     FrameBuffer *fb, *hwfb; // SW and HW framebuffers
+    PPC * dImgCam; //camera used to move ppc
 
-
+    int u, v, w, h;
 
     Scene();
     void DBG();
@@ -47,6 +45,7 @@ public:
     void LoadView2();
     void GoToView2();
     void GoToView(PPC *nppc);
+    void GetTransportMatrix();
 };
 
 extern Scene *scene;

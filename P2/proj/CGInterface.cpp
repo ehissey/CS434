@@ -93,6 +93,7 @@ bool ShaderOneInterface::PerSessionInit(CGInterface *cgi) {
     eyePix = cgGetNamedParameter(fragmentProgram, "eyeCam");
     renderingBG = cgGetNamedParameter(fragmentProgram, "bgRendering");
     renderingFloor =cgGetNamedParameter(fragmentProgram, "floorRendering");
+    cMapPix = cgGetNamedParameter(fragmentProgram, "cMap");
     floorPix = cgGetNamedParameter(fragmentProgram, "floor");
     depthPix = cgGetNamedParameter(fragmentProgram, "depth");
     depthZ = cgGetNamedParameter(fragmentProgram, "depthZ");
@@ -102,6 +103,13 @@ bool ShaderOneInterface::PerSessionInit(CGInterface *cgi) {
     v1 = cgGetNamedParameter(fragmentProgram, "quad1");
     v2 = cgGetNamedParameter(fragmentProgram, "quad2");
     v3 = cgGetNamedParameter(fragmentProgram, "quad3");
+
+    u = cgGetNamedParameter(fragmentProgram, "u");
+    v = cgGetNamedParameter(fragmentProgram, "v");
+    w = cgGetNamedParameter(fragmentProgram, "w");
+    h = cgGetNamedParameter(fragmentProgram, "h");
+
+    lightPos = cgGetNamedParameter(fragmentProgram, "lightpos");
 
     fPoints = cgGetNamedParameter(fragmentProgram, "fPoints");
 
@@ -125,6 +133,10 @@ void ShaderOneInterface::PerFrameInit() {
 #endif
     cgGLSetParameter3fv(eyePix, (float*)&(scene->ppc->C));
 
+    // set intrinsics
+    scene->dImgCam->SetIntrinsicsHW();
+    // set extrinsics
+    scene->dImgCam->SetExtrinsicsHW();
 
     //set parameters
     cgGLSetStateMatrixParameter(diProjMatrix, 
@@ -136,15 +148,18 @@ void ShaderOneInterface::PerFrameInit() {
     // set extrinsics
     scene->ppc->SetExtrinsicsHW();
 
-
     
- 
 
     cgGLSetParameterArray3f(fPoints, 0, 8, (float *)scene->tms[3].verts);
 
+    cgGLSetParameter1f(u, scene->u);
+    cgGLSetParameter1f(v, scene->v);
+    cgGLSetParameter1f(h, scene->h);
+    cgGLSetParameter1f(w, scene->w);
 
-
-
+    cgGLSetParameter3f(lightPos, scene->dImgCam->C.xyz[0], 
+                                 scene->dImgCam->C.xyz[1], 
+                                 scene->dImgCam->C.xyz[2]);
 }
 
 void ShaderOneInterface::PerFrameDisable() {

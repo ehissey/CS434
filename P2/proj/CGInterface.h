@@ -55,6 +55,9 @@ class ShaderOneInterface {
   CGparameter v2;
   CGparameter v3;
 
+  CGparameter u,v,h,w;
+  CGparameter lightPos;
+
 public:
   ShaderOneInterface() {};
   bool PerSessionInit(CGInterface *cgi); // per session initialization
