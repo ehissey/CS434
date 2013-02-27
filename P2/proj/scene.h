@@ -1,11 +1,5 @@
 #pragma once
 
-#pragma comment(lib,"fltk.lib")
-#pragma comment(lib,"fltkgl.lib")
-#pragma comment(lib,"Ws2_32.lib")
-#pragma comment(lib,"comctl32.lib")
-#pragma comment(lib,"cg.lib")
-#pragma comment(lib,"cggl.lib")
 
 #include "gui.h"
 #include "framebuffer.h"
@@ -13,9 +7,7 @@
 #include "tmesh.h"
 #include "CGInterface.h"
 
-class Scene 
-{
-
+class Scene {
 public:
 
     // interfaces for GPU programming
@@ -29,7 +21,7 @@ public:
     TMesh *tms; // geometry
     int tmsN; // number of triangle meshes
     GUI *gui; // user interface
-    FrameBuffer *fb, *hwfb; // SW and HW framebuffers
+    FrameBuffer *fb, *hwfb, *img; // SW and HW framebuffers
     PPC * dImgCam; //camera used to move ppc
 
     int u, v, w, h;
@@ -53,11 +45,11 @@ public:
     void SaveView2();
     void LoadView2();
     void GoToView2();
-
     void GoToView(PPC *nppc);
-    
     void GetTransportMatrix();
     void TransposeTransportMatrix();
+    void GetPerspective();
+    void VisualizeTransMatrix();
 };
 
 extern Scene *scene;

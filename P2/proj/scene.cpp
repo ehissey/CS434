@@ -45,7 +45,8 @@ Scene::Scene()
     // create camera for rendering scene
     float hfov = 45.0f;
     ppc = new PPC(hfov, w, h);
-
+    ppc->PositionAndOrient(V3(-25,0,0), V3(25,0,-175).Normalized(), V3(0.0f, 1.0f, 0.0f), * ppc);
+    
     // load, scale and position geometry, i.e. triangle meshes
     tmsN = 1;
     tms = new TMesh[tmsN];
@@ -123,9 +124,15 @@ void Scene::DBG()
 {
    cerr << "INFO: DBG" << endl;
 
-   
+    
     GetTransportMatrix();
+    VisualizeTransMatrix();
+    GetPerspective();
+    img->Save("camera_perspective.TIFF");
     TransposeTransportMatrix();
+    GetPerspective();
+    img->Save("projector_perspective.TIFF");
+
 
 }
 
@@ -268,6 +275,9 @@ void Scene::RenderHW()
 // gpu HW pipeline
 void Scene::RenderGPU() 
 {
+
+    
+
     // per session initialization, i.e. once per run
     if (cgi->needInit) 
     {
@@ -279,7 +289,9 @@ void Scene::RenderGPU()
         }
     }
 
-    dImgCam->PositionAndOrient(V3(0,0,0), V3(0,0,-1), V3(0.0f, 1.0f, 0.0f), * dImgCam);
+
+
+    dImgCam->PositionAndOrient(V3(25,0,0), V3(-25,0,-175).Normalized(), V3(0.0f, 1.0f, 0.0f), * dImgCam);
     
     FrameSetupHW(dImgCam);
 
@@ -374,37 +386,118 @@ void Scene::GetTransportMatrix()
     }
 
     cerr << "INFO: DONE!" << endl;
-    
+    /*
     for (int i = 0; i < w*h; i++) 
     {
         for(int j = 0; j < w*h; j++)
         {
-                unsigned char *p = (unsigned char *)&images[i][j];
-                if (p[1] != 0) 
-                {
-                    cerr << (int)p[0] << " " << (int)p[1] << " " << (int)p[2] << " " << (int)p[3] << endl;
-                }
+                
         }
-    }
-
-
+    }*/
 
     cerr << "INFO: DONE AGAIN!" << endl;
-
-
 }
-
 void Scene::TransposeTransportMatrix()
 {
-    unsigned int temp;
-
+    unsigned int temp = 0;
+    cerr << "OMG" << endl;
     for(int i = 0; i < w*h; i++)
     {
-        for(int j = i+1; j < w*h; j++)
+        for(int j = i; j < w*h; j++)
         {
+            //cerr << "END" << endl;
             temp = images[i][j];
             images[i][j] = images[j][i];
             images[j][i] = temp;
+            /*unsigned char *p = (unsigned char *)&images[i][j];
+                if (p[1] != 0) 
+                {
+                    cerr << (int)p[0] << " " << (int)p[1] << " " << (int)p[2] << " " << (int)p[3] << endl;
+                }*/
+            
         }
     }
 } 
+
+void Scene::VisualizeTransMatrix()
+{
+    unsigned int *visual = new unsigned int[w*h/4];
+    unsigned char *p;
+    unsigned int avg = 0;
+
+    img = new FrameBuffer(20, 50, w/2, h/2);
+
+    for(int i = 0; i < w*h/4; i++)
+    {
+        visual[i] = 0;
+    }
+
+    for(int i = 0; i < w*h-4; i+=4)
+    {
+        for(int j = 0; j < w*h-4; j+=4)
+        {
+            for(int k = i; k < i+4; k++)
+            {
+                for(int l = j; l < j+4; l++)
+                {
+                    p = (unsigned char *)&images[k][l];
+                    
+                    if(p[0] != 0 || p[1] != 0 || p[2] != 0)
+                    {
+                        avg = ((int) p[0] + (int) p[1] + (int)p[2])/3;
+
+                        if(visual[i/4] < avg)
+                        {
+                            visual[i/4] = avg;
+                        }
+                    }
+                }
+            }            
+        }
+    }
+
+    for(int i = 0; i < w*h/4; i++)
+    {
+        for(int j = i*4; j <i*4+4; j++)
+        {
+            img->pix[j] = visual[i];
+        }
+        
+    }
+
+    img->Save("transport_visualization.TIFF");
+    
+}
+
+void Scene::GetPerspective()
+{
+    unsigned int *perspective = new unsigned int[w*h];
+    unsigned int *l = new unsigned int[w*h];
+
+    img = new FrameBuffer(20, 50, w, h);
+
+    for(int i = 0; i < w*h; i++)
+    {
+        l[i] = 1;
+        perspective[i] = 0;
+    }
+
+    for(int i = 0; i < w*h; i++)
+    {
+        for(int j = 0; j < w*h; j++)
+        {
+            
+            perspective[j] = images[i][j]*l[i] + perspective[j];
+        }
+    }
+
+    for(int i = 0; i < w*h; i++)
+    {
+        
+        img->pix[i] = perspective[i];
+    }
+
+    img->show();
+
+    cerr << "END" << endl;
+}

@@ -53,7 +53,6 @@ public:
 
   // copies SW pixels
   void CopyFrom(FrameBuffer *fb);
-
   void Save(const char* path);
 
 };
