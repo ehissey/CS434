@@ -25,7 +25,7 @@ Scene::Scene()
     // create SW framebuffer
     int u0 = 20;
     int v0 = 50;
-    int side = 64;
+    int side = 128;
     w = side;
     h = side;
 
@@ -72,7 +72,6 @@ Scene::Scene()
     tms[0].shaderIsEnabled = 1;
 
     Render();
-    Fl::check();
 
     // render scene
     
@@ -126,7 +125,7 @@ void Scene::DBG()
 
    
     GetTransportMatrix();
-    
+    TransposeTransportMatrix();
 
 }
 
@@ -269,9 +268,6 @@ void Scene::RenderHW()
 // gpu HW pipeline
 void Scene::RenderGPU() 
 {
-
-    
-
     // per session initialization, i.e. once per run
     if (cgi->needInit) 
     {
@@ -282,8 +278,6 @@ void Scene::RenderGPU()
             soi->PerSessionInit(cgi);
         }
     }
-
-
 
     dImgCam->PositionAndOrient(V3(0,0,0), V3(0,0,-1), V3(0.0f, 1.0f, 0.0f), * dImgCam);
     
@@ -341,7 +335,7 @@ void Scene::RenderGPU()
 
 void Scene::GetTransportMatrix()
 {
-    unsigned int ** images = new unsigned int * [w*h];
+    images = new unsigned int * [w*h];
     unsigned int *pixels = new unsigned int[w*h];
 
     cerr << "INFO: STARTING" << endl;
@@ -356,19 +350,17 @@ void Scene::GetTransportMatrix()
         for(int j = 0; j < w; j++)
         {
             u = j;
-            Render();
             
-
             Fl::check();
-            glReadPixels(0,0,w,h,GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+            Render();
 
-            
+            glReadPixels(0,0,w,h,GL_RGBA, GL_UNSIGNED_BYTE, pixels);
             
             for (int k = 0; k < w*h; k++) 
             {
                 unsigned char *p = (unsigned char *)&pixels[k];
 
-                if (p[1] == 0) 
+                if (p[1] != 0) 
                 {
                     cerr << (int)p[0] << " " << (int)p[1] << " " << (int)p[2] << " " << (int)p[3] << endl;
                 }
@@ -388,12 +380,31 @@ void Scene::GetTransportMatrix()
         for(int j = 0; j < w*h; j++)
         {
                 unsigned char *p = (unsigned char *)&images[i][j];
-                if (p[1] == 0) 
+                if (p[1] != 0) 
                 {
                     cerr << (int)p[0] << " " << (int)p[1] << " " << (int)p[2] << " " << (int)p[3] << endl;
                 }
         }
     }
 
+
+
     cerr << "INFO: DONE AGAIN!" << endl;
+
+
 }
+
+void Scene::TransposeTransportMatrix()
+{
+    unsigned int temp;
+
+    for(int i = 0; i < w*h; i++)
+    {
+        for(int j = i+1; j < w*h; j++)
+        {
+            temp = images[i][j];
+            images[i][j] = images[j][i];
+            images[j][i] = temp;
+        }
+    }
+} 
