@@ -3,6 +3,7 @@
 #include <iostream>
 #include "scene.h"
 #include <math.h>
+#include <tiffio.h>
 
 
 // makes an OpenGL window that supports SW, HW rendering, that can be displayed on screen
@@ -353,4 +354,40 @@ void FrameBuffer::CopyFrom(FrameBuffer *fb) {
     pix[uv] = fb->pix[uv];
   }
 
+}
+
+void FrameBuffer::Save(const char* path){
+   int width = w, height = h;
+   TIFF *file;
+   GLubyte *image, *p;
+   int i;
+
+   file = TIFFOpen(path, "w");
+   if (file) {
+      image = (GLubyte *) malloc(width * height * sizeof(GLubyte) * 3);
+
+      glPixelStorei(GL_PACK_ALIGNMENT, 1);
+
+      image = (GLubyte *)pix;
+      TIFFSetField(file, TIFFTAG_IMAGEWIDTH, (uint32) width);
+      TIFFSetField(file, TIFFTAG_IMAGELENGTH, (uint32) height);
+      TIFFSetField(file, TIFFTAG_BITSPERSAMPLE, 8);
+      TIFFSetField(file, TIFFTAG_COMPRESSION, COMPRESSION_PACKBITS);
+      TIFFSetField(file, TIFFTAG_PHOTOMETRIC, PHOTOMETRIC_RGB);
+      TIFFSetField(file, TIFFTAG_SAMPLESPERPIXEL, 4);
+      TIFFSetField(file, TIFFTAG_PLANARCONFIG, PLANARCONFIG_CONTIG);
+      TIFFSetField(file, TIFFTAG_ROWSPERSTRIP, 1);
+      TIFFSetField(file, TIFFTAG_IMAGEDESCRIPTION, "");
+      p = image;
+      for (i = height - 1; i >= 0; i--) {
+         if (TIFFWriteScanline(file, p, i, 0) < 0) {
+            free(image);
+            TIFFClose(file);
+            return;
+         }
+         p += width * sizeof(GLubyte) * 4;
+      }
+      TIFFClose(file);
+   }
+   return;
 }

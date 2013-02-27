@@ -1,5 +1,11 @@
 #pragma once
 
+#pragma comment(lib,"fltk.lib")
+#pragma comment(lib,"fltkgl.lib")
+#pragma comment(lib,"Ws2_32.lib")
+#pragma comment(lib,"comctl32.lib")
+#pragma comment(lib,"cg.lib")
+#pragma comment(lib,"cggl.lib")
 
 #include "gui.h"
 #include "framebuffer.h"
@@ -7,13 +13,16 @@
 #include "tmesh.h"
 #include "CGInterface.h"
 
-class Scene {
+class Scene 
+{
+
 public:
 
     // interfaces for GPU programming
     CGInterface *cgi;
     ShaderOneInterface *soi;
 
+    unsigned int ** images;
 
     PPC *ppc; // camera used to render current frame
 
@@ -44,8 +53,11 @@ public:
     void SaveView2();
     void LoadView2();
     void GoToView2();
+
     void GoToView(PPC *nppc);
+    
     void GetTransportMatrix();
+    void TransposeTransportMatrix();
 };
 
 extern Scene *scene;
